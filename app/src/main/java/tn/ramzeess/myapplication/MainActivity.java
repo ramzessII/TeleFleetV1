@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity{
                 item.setChecked(modePrivateEnable);
                 break;
             case R.id.item_setting2:
-                item.setChecked(!item.isChecked());
+
                 break;
             case R.id.item_setting3:
                 item.setChecked(!item.isChecked());
