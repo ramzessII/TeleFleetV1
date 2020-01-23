@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <item
+            android:id="@+id/item_private_mode"
+            android:title="Mode privé"
+            android:checkable="true"
+            android:tooltipText="Passer au mode privé.\nCeci implique que le boitier cesse d'émettre des données"
+            android:actionLayout="@layout/fragment_diagnostic"/>
+
+        <item
+            android:id="@+id/item_setting2"
+            android:title="Paramètre 2"
+            android:checkable="true"/>
+        <item
+            android:id="@+id/item_setting3"
+            android:title="Paramètre 3"
+            android:checkable="true"/>
+</menu>

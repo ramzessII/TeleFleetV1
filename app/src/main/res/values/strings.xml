@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TeleFleet V1</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">ACTIA Telefleet</string>
+    <string name="nav_header_subtitle">ramzi.hannafi@actia-engineering.tn</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_compte">User account</string>
+    <string name="menu_gallery">Driving</string>
+    <string name="menu_diagnostic">Diagnostic</string>
+    <string name="menu_parametres">Parameters</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="description_of_login_icon">Description of login icon</string>
+    <string name="sign_in">Sign in</string>
+    <string name="register">Register</string>
+</resources>

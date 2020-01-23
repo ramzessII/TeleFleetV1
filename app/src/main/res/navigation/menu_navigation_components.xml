@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_compte">
+
+
+    <fragment
+        android:id="@+id/nav_compte"
+        android:name="tn.ramzeess.myapplication.ui.compte.CompteFragment"
+        android:label="@string/menu_compte"
+        tools:layout="@layout/fragment_compte" />
+
+    <fragment
+        android:id="@+id/nav_conduite"
+        android:name="tn.ramzeess.myapplication.ui.conduite.ConduiteFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_conduite" />
+
+    <fragment
+        android:id="@+id/nav_diagnostic"
+        android:name="tn.ramzeess.myapplication.ui.diagnostic.DiagnosticFragment"
+        android:label="@string/menu_diagnostic"
+        tools:layout="@layout/fragment_diagnostic" />
+
+    <fragment
+        android:id="@+id/nav_parametres"
+        android:name="tn.ramzeess.myapplication.ui.parametres.ParametresFragment"
+        android:label="@string/menu_parametres"
+        tools:layout="@layout/fragment_parametres" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="tn.ramzeess.myapplication.ui.share.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="tn.ramzeess.myapplication.ui.send.SendFragment"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_send" />
+</navigation>
