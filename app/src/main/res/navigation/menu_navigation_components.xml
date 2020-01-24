@@ -5,6 +5,11 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_compte">
 
+    <fragment
+        android:id="@+id/nav_mainScreen"
+        android:name="tn.ramzess.myapplication.ui.mainscreen.MainScreenFragment"
+        android:label="@string/menu_mainScreen"
+        tools:layout="@layout/score_first_screen_fragment" />
 
     <fragment
         android:id="@+id/nav_compte"
@@ -29,12 +34,6 @@
         android:name="tn.ramzess.myapplication.ui.parametres.ParametresFragment"
         android:label="@string/menu_parametres"
         tools:layout="@layout/fragment_parametres" />
-
-    <fragment
-        android:id="@+id/nav_mainScreen"
-        android:name="tn.ramzess.myapplication.ui.mainscreen.MainScreenFragment"
-        android:label="@string/menu_mainScreen"
-        tools:layout="@layout/fragment_mainscreen" />
 
     <fragment
         android:id="@+id/nav_send"
