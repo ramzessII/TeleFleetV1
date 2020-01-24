@@ -5,17 +5,19 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_compte">
 
-    <fragment
-        android:id="@+id/nav_mainScreen"
-        android:name="tn.ramzess.myapplication.ui.mainscreen.MainScreenFragment"
-        android:label="@string/menu_mainScreen"
-        tools:layout="@layout/score_first_screen_fragment" />
 
     <fragment
         android:id="@+id/nav_compte"
         android:name="tn.ramzess.myapplication.ui.compte.CompteFragment"
         android:label="@string/menu_compte"
-        tools:layout="@layout/fragment_compte" />
+        tools:layout="@layout/fragment_compte" >
+        <action
+            android:id="@+id/action_nav_compte_to_nav_mainScreen"
+            app:destination="@id/nav_mainScreen" />
+        <action
+            android:id="@+id/action_nav_compte_to_nav_score_annuel"
+            app:destination="@id/nav_score_annuel" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_conduite"
@@ -40,4 +42,37 @@
         android:name="tn.ramzess.myapplication.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_score_annuel"
+        android:name="tn.ramzess.myapplication.ui.mainscreen.scores.ScoreAnnuelFragment"
+        android:label="Score annuel"
+        tools:layout="@layout/score_annuel_fragment" >
+        <action
+            android:id="@+id/action_nav_score_annuel_to_nav_score_mensuel"
+            app:destination="@id/nav_score_mensuel" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_score_mensuel"
+        android:name="tn.ramzess.myapplication.ui.mainscreen.scores.ScoreMensuelFragment"
+        android:label="Score mensuel"
+        tools:layout="@layout/score_mensuel_fragment" >
+        <action
+            android:id="@+id/action_nav_score_mensuel_to_nav_score_hebdomadaire"
+            app:destination="@id/nav_score_hebdomadaire" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_score_hebdomadaire"
+        android:name="tn.ramzess.myapplication.ui.mainscreen.scores.ScoreHebdomadaireFragment"
+        android:label="Score hebdomadaire"
+        tools:layout="@layout/score_hebdomadare_fragment" >
+        <action
+            android:id="@+id/action_nav_score_hebdomadaire_to_nav_mainScreen"
+            app:destination="@id/nav_mainScreen" />
+        <action
+            android:id="@+id/action_nav_score_hebdomadaire_to_nav_compte"
+            app:destination="@id/nav_compte" />
+    </fragment>
 </navigation>

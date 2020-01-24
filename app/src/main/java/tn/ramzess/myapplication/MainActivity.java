@@ -6,7 +6,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -26,7 +28,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements LocationListener {
+public class MainActivity extends AppCompatActivity implements LocationListener, View.OnTouchListener {
 
     private LocationManager locationManager;
     private static int PERMISSION_CALL_ID=1234;
@@ -51,10 +53,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavController navController2 = Navigation.findNavController(this, R.id.nav_mainScreen);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        NavigationUI.setupWithNavController(navigationView, navController2);
+
 
     }
 
@@ -188,5 +189,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         {
             checkPermission();
         }
+    }
+
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        Toast.makeText(this,"Touch Screen event", Toast.LENGTH_SHORT).show();
+        return false;
     }
 }
