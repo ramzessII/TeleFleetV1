@@ -8,37 +8,37 @@
 
     <fragment
         android:id="@+id/nav_compte"
-        android:name="tn.ramzeess.myapplication.ui.compte.CompteFragment"
+        android:name="tn.ramzess.myapplication.ui.compte.CompteFragment"
         android:label="@string/menu_compte"
         tools:layout="@layout/fragment_compte" />
 
     <fragment
         android:id="@+id/nav_conduite"
-        android:name="tn.ramzeess.myapplication.ui.conduite.ConduiteFragment"
+        android:name="tn.ramzess.myapplication.ui.conduite.ConduiteFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_conduite" />
 
     <fragment
         android:id="@+id/nav_diagnostic"
-        android:name="tn.ramzeess.myapplication.ui.diagnostic.DiagnosticFragment"
+        android:name="tn.ramzess.myapplication.ui.diagnostic.DiagnosticFragment"
         android:label="@string/menu_diagnostic"
         tools:layout="@layout/fragment_diagnostic" />
 
     <fragment
         android:id="@+id/nav_parametres"
-        android:name="tn.ramzeess.myapplication.ui.parametres.ParametresFragment"
+        android:name="tn.ramzess.myapplication.ui.parametres.ParametresFragment"
         android:label="@string/menu_parametres"
         tools:layout="@layout/fragment_parametres" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="tn.ramzeess.myapplication.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:id="@+id/nav_mainScreen"
+        android:name="tn.ramzess.myapplication.ui.mainscreen.MainScreenFragment"
+        android:label="@string/menu_mainScreen"
+        tools:layout="@layout/fragment_mainscreen" />
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="tn.ramzeess.myapplication.ui.send.SendFragment"
+        android:name="tn.ramzess.myapplication.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
 </navigation>

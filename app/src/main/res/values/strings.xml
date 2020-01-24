@@ -11,7 +11,7 @@
     <string name="menu_gallery">Driving</string>
     <string name="menu_diagnostic">Diagnostic</string>
     <string name="menu_parametres">Parameters</string>
-    <string name="menu_share">Share</string>
+    <string name="menu_mainScreen">Share</string>
     <string name="menu_send">Send</string>
     <string name="description_of_login_icon">Description of login icon</string>
     <string name="sign_in">Sign in</string>

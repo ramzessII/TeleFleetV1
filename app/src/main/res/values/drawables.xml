@@ -3,6 +3,6 @@
     <item name="ic_menu_conduite" type="drawable">@android:drawable/ic_menu_gallery</item>
     <item name="ic_menu_diagnostic" type="drawable">@drawable/ic_menu_diagnostic</item>
     <item name="ic_menu_parametres" type="drawable">@android:drawable/ic_menu_manage</item>
-    <item name="ic_menu_share" type="drawable">@android:drawable/ic_menu_share</item>
+    <item name="ic_menu_main_screen" type="drawable">@android:drawable/ic_menu_share</item>
     <item name="ic_menu_send" type="drawable">@android:drawable/ic_menu_send</item>
 </resources>

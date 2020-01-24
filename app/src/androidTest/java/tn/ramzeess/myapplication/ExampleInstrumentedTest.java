@@ -1,4 +1,4 @@
-package tn.ramzeess.myapplication;
+package tn.ramzess.myapplication;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("tn.ramzeess.myapplication", appContext.getPackageName());
+        assertEquals("tn.ramzess.myapplication", appContext.getPackageName());
     }
 }

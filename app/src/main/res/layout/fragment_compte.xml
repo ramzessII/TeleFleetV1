@@ -12,14 +12,15 @@
         android:orientation="vertical">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -35,6 +36,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_button_desabled"
+                        android:onClick="onClickBtnSignIn"
                         android:text="@string/sign_in"
                         android:textColor="@android:color/darker_gray" />
 
@@ -46,6 +48,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_button_enabled"
+                        android:onClick="onClickBtnRegister"
                         android:text="@string/register"
                         android:textColor="@color/colorPrimary" />
                 </LinearLayout>
@@ -115,6 +118,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/shape_button_enabled"
+                            android:onClick="onClickBtnFacebook"
                             android:text="Facebook" />
 
                         <Button
@@ -124,6 +128,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_weight="1"
                             android:background="@drawable/shape_button_enabled"
+                            android:onClick="onClickBtnGoogle"
                             android:text="Google" />
 
                     </LinearLayout>

@@ -1,4 +1,4 @@
-package tn.ramzeess.myapplication;
+package tn.ramzess.myapplication;
 
 import org.junit.Test;
 
