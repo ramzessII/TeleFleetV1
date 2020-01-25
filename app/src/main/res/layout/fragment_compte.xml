@@ -30,7 +30,7 @@
 
                     <Button
                         android:id="@+id/buttonSignIn"
-                        style="@style/MyButton"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
@@ -42,7 +42,7 @@
 
                     <Button
                         android:id="@+id/buttonRegister"
-                        style="@style/MyButton"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -83,7 +83,7 @@
 
                     <Button
                         android:id="@+id/buttonLogin"
-                        style="@style/MyButton"
+                        style="@style/ButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="25dp"
@@ -112,7 +112,7 @@
                         android:padding="10dp">
 
                         <Button
-                            style="@style/MyButton"
+                            style="@style/ButtonStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="10dp"
@@ -122,7 +122,7 @@
                             android:text="Facebook" />
 
                         <Button
-                            style="@style/MyButton"
+                            style="@style/ButtonStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
