@@ -45,6 +45,17 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="backgroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="57" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundClipArt">
                                         <value>
                                           <PersistentState>
@@ -74,7 +85,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="scalingPercent" value="60" />
+                                                <entry key="scalingPercent" value="77" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -95,9 +106,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="a65926" />
-                                      <entry key="foregroundImage" value="C:\Users\rhannafi\AndroidStudioProjects\MyApplication2\app\src\main\res\ressourceramzi\driver.png" />
+                                      <entry key="backgroundColor" value="6b7ca6" />
+                                      <entry key="foregroundImage" value="C:\Users\rhannafi\AndroidStudioProjects\TeleFleetV1\app\src\main\ecodriving.jpg" />
                                       <entry key="outputName" value="driver" />
                                     </map>
                                   </option>

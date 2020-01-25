@@ -1,42 +1,34 @@
 package tn.ramzess.myapplication;
 
 import android.Manifest;
-import android.app.Notification;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Path;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.GestureDetector;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.navigation.NavAction;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import tn.ramzess.myapplication.R;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.Menu;
-import android.widget.Toast;
-
-import java.util.EventListener;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements LocationListener, View.OnTouchListener  {
     private LocationManager locationManager;
@@ -48,6 +40,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     DrawerLayout drawer;
     NavigationView navigationView;
     NavController navController;
+
+    BarChart chart ;
+    ArrayList<BarEntry> chartValues ;
+    ArrayList<String> chartLabels ;
+    BarDataSet barDataSet ;
+    BarData chartDatas;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         drawer.setOnTouchListener(this);
+
     }
 
     @Override
@@ -204,20 +205,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-   /*   int action = event.getAction();
-       System.out.println("Action Event " + action);
-       if (action != MotionEvent.ACTION_SCROLL)
-           return false;*/
-
-
-
-
-
         System.out.println("1. Touche event detected");
         //int action = event.getAction();
         System.out.println("1. Event action : ");
         System.out.println("Action Event : " );
-   /*     int idCurrentDestination = navController.getCurrentDestination().getId();
+        int idCurrentDestination = navController.getCurrentDestination().getId();
         int idNextDestination = navController.getGraph().getStartDestination();
         switch (idCurrentDestination)
         {
@@ -243,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         {
             e.printStackTrace();
         }
-*/
+
         return true;
     }
 }
