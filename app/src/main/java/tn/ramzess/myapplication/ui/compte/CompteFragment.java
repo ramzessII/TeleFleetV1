@@ -2,6 +2,7 @@ package tn.ramzess.myapplication.ui.compte;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,10 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
 
+import tn.ramzess.myapplication.MainActivity;
 import tn.ramzess.myapplication.R;
 
-public class CompteFragment extends Fragment {
+public class CompteFragment extends Fragment{
 
     private CompteViewModel compteViewModel;
 

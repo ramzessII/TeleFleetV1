@@ -1,7 +1,9 @@
 package tn.ramzess.myapplication;
 
 import android.Manifest;
+import android.app.Notification;
 import android.content.pm.PackageManager;
+import android.graphics.Path;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -12,7 +14,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.navigation.NavAction;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -28,35 +34,37 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements LocationListener, View.OnTouchListener {
+import java.util.EventListener;
 
+public class MainActivity extends AppCompatActivity implements LocationListener, View.OnTouchListener  {
     private LocationManager locationManager;
     private static int PERMISSION_CALL_ID=1234;
     private boolean modePrivateEnable = false;
     private boolean userIsIdentified = false;
     private AppBarConfiguration mAppBarConfiguration;
-
+    Toolbar toolbar;
+    DrawerLayout drawer;
+    NavigationView navigationView;
+    NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.main_activity_drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        View btnLogin = findViewById(R.id.buttonLogin);
+        drawer = findViewById(R.id.main_activity_drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_compte, R.id.nav_conduite, R.id.nav_diagnostic,
-                R.id.nav_parametres, R.id.nav_mainScreen, R.id.nav_send)
+                R.id.nav_parametres, R.id.nav_score_annuel, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
+        drawer.setOnTouchListener(this);
     }
 
     @Override
@@ -191,10 +199,50 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         }
     }
 
-
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        Toast.makeText(this,"Touch Screen event", Toast.LENGTH_SHORT).show();
-        return false;
+   /*   int action = event.getAction();
+       System.out.println("Action Event " + action);
+       if (action != MotionEvent.ACTION_SCROLL)
+           return false;*/
+
+
+
+
+
+        System.out.println("1. Touche event detected");
+        //int action = event.getAction();
+        System.out.println("1. Event action : ");
+        System.out.println("Action Event : " );
+   /*     int idCurrentDestination = navController.getCurrentDestination().getId();
+        int idNextDestination = navController.getGraph().getStartDestination();
+        switch (idCurrentDestination)
+        {
+            case R.id.nav_score_annuel:
+                idNextDestination = R.id.nav_score_mensuel;
+                break;
+            case R.id.nav_score_mensuel:
+                idNextDestination = R.id.nav_score_hebdomadaire;
+                break;
+            case R.id.nav_score_hebdomadaire:
+                idNextDestination = R.id.nav_score_annuel;
+                break;
+            default:
+                break;
+        }
+
+        try {
+            navController.navigate(idNextDestination);
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+*/
+        return true;
     }
 }
+
+

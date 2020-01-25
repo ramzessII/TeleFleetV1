@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_compte">
+    app:startDestination="@+id/nav_score_annuel">
 
 
     <fragment
@@ -14,9 +14,6 @@
         <action
             android:id="@+id/action_nav_compte_to_nav_mainScreen"
             app:destination="@id/nav_mainScreen" />
-        <action
-            android:id="@+id/action_nav_compte_to_nav_score_annuel"
-            app:destination="@id/nav_score_annuel" />
     </fragment>
 
     <fragment
@@ -41,7 +38,7 @@
         android:id="@+id/nav_send"
         android:name="tn.ramzess.myapplication.ui.send.SendFragment"
         android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_login" />
 
     <fragment
         android:id="@+id/nav_score_annuel"
@@ -71,8 +68,5 @@
         <action
             android:id="@+id/action_nav_score_hebdomadaire_to_nav_mainScreen"
             app:destination="@id/nav_mainScreen" />
-        <action
-            android:id="@+id/action_nav_score_hebdomadaire_to_nav_compte"
-            app:destination="@id/nav_compte" />
     </fragment>
 </navigation>
