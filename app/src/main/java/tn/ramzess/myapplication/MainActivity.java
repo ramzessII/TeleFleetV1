@@ -2,12 +2,14 @@ package tn.ramzess.myapplication;
 
 import android.Manifest;
 import android.app.Notification;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Path;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
