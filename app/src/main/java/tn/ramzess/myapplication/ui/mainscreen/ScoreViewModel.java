@@ -7,9 +7,13 @@ import androidx.lifecycle.ViewModel;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import tn.ramzess.myapplication.business.Chauffeur;
 import tn.ramzess.myapplication.business.Score;
+import tn.ramzess.myapplication.dao.Database;
 
 public class ScoreViewModel extends ViewModel {
 
@@ -17,10 +21,33 @@ public class ScoreViewModel extends ViewModel {
     private boolean periodeEnCoursOuXDernieresSousPeriode;
 
     private MutableLiveData<String> mText;
-    private Score score = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);
+
+    ArrayList<Entry> entries = new ArrayList<>();
+    LineDataSet dataset = new LineDataSet(entries, "# de Scores");
+    ArrayList<String> labels = new ArrayList<String>();
+    Score score;// = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);;
 
     public ScoreViewModel() {
+        Database database = new Database();
+        SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
+        Date dateDeb= new Date();
+        Date dateFin = new Date();
+        try {
+            dateDeb = sdf.parse("01/01/2019");
+            dateFin = sdf.parse("01/12/2019");
+        } catch (Exception e) {
 
+            e.printStackTrace();
+        }
+
+        Score score;// = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);
+        score = database.getScore(new Chauffeur(1, "Bond", "James"),dateDeb,dateFin,Score.EST_SCORE_ANNUEL);
+        if(score != null) {
+            entries = score.getEntries();
+            dataset = new LineDataSet(entries, "# de Scores");
+            labels = score.getLabels();
+            System.out.println("Score retrieved form database");
+        }
         mText = new MutableLiveData<>();
         mText.setValue("This is score annuel fragment");
     }
@@ -30,14 +57,14 @@ public class ScoreViewModel extends ViewModel {
     }
 
     public LineDataSet getDataset() {
-        return score.getDataset();
+        return dataset;
     }
 
     public ArrayList<String> getLabels() {
-        return score.getLabels();
+        return labels;
     }
 
     public ArrayList<Entry> getEntries() {
-        return score.getEntries();
+        return entries;
     }
 }

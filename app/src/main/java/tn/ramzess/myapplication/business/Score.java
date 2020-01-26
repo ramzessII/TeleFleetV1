@@ -2,8 +2,8 @@ package tn.ramzess.myapplication.business;
 
 
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineDataSet;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,13 +29,134 @@ public class Score {
     private double consommationTotale;
     private double pourcentageMixeVille;
     ArrayList<Entry> entries = new ArrayList<>();
-    LineDataSet dataset = new LineDataSet(entries, "# de Scores");
-    ArrayList<String> labels = new ArrayList<String>();
+    ArrayList<Date> labels = new ArrayList<Date>();
 
     private Date dateDebut;
     private Date dateFin;
 
-    public Score(int typeScore,boolean periodeEnCoursOuXDernieresSousPeriode) {
+    public Score(int typeSCore) {
+        this.typeScore = typeSCore;
+        this.periodeEnCoursOuXDernieresSousPeriode = PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE;
+        estPeriodeEnCours=true;
+        estScoreConduiteDemande=true;
+        emissionTotalCO2 = 0;
+        estTendanceHaussiere=true;
+        consomationCible = 0;
+        gainConsommation = 0;
+        distanceParcourue = 0;
+        dureeParcourue = 0;
+        consommationTotale = 0;
+        pourcentageMixeVille = 0;
+        entries = new ArrayList<>();
+        labels = new ArrayList<Date>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
+
+        try {
+
+
+            switch (typeScore) {
+                case EST_SCORE_ANNUEL:
+                    labels.add(sdf.parse("01/01/2019"));
+                    labels.add(sdf.parse("01/02/2019"));
+                    labels.add(sdf.parse("01/03/2019"));
+                    labels.add(sdf.parse("01/04/2019"));
+                    labels.add(sdf.parse("01/05/2019"));
+                    labels.add(sdf.parse("01/06/2019"));
+                    labels.add(sdf.parse("01/07/2019"));
+                    labels.add(sdf.parse("01/08/2019"));
+                    labels.add(sdf.parse("01/09/2019"));
+                    labels.add(sdf.parse("01/10/2019"));
+                    labels.add(sdf.parse("01/11/2019"));
+                    labels.add(sdf.parse("01/12/2019"));
+                    for (int i = 0; i < labels.size(); i++) {
+                        entries.add(new Entry(0, i));
+                    }
+
+                    break;
+                case EST_SCORE_MENSUEL:
+                    labels.add(sdf.parse("01/01/2019"));
+                    labels.add(sdf.parse("02/01/2019"));
+                    labels.add(sdf.parse("03/01/2019"));
+                    labels.add(sdf.parse("04/01/2019"));
+                    labels.add(sdf.parse("05/01/2019"));
+                    labels.add(sdf.parse("06/01/2019"));
+                    labels.add(sdf.parse("07/01/2019"));
+                    labels.add(sdf.parse("08/01/2019"));
+                    labels.add(sdf.parse("09/01/2019"));
+                    labels.add(sdf.parse("10/01/2019"));
+                    labels.add(sdf.parse("11/01/2019"));
+                    labels.add(sdf.parse("12/01/2019"));
+                    labels.add(sdf.parse("13/01/2019"));
+                    labels.add(sdf.parse("14/01/2019"));
+                    labels.add(sdf.parse("15/01/2019"));
+                    labels.add(sdf.parse("16/01/2019"));
+                    labels.add(sdf.parse("17/01/2019"));
+                    labels.add(sdf.parse("18/01/2019"));
+                    labels.add(sdf.parse("19/01/2019"));
+                    labels.add(sdf.parse("20/01/2019"));
+                    labels.add(sdf.parse("21/01/2019"));
+                    labels.add(sdf.parse("22/01/2019"));
+                    labels.add(sdf.parse("23/01/2019"));
+                    labels.add(sdf.parse("24/01/2019"));
+                    labels.add(sdf.parse("25/01/2019"));
+                    labels.add(sdf.parse("26/01/2019"));
+                    labels.add(sdf.parse("27/01/2019"));
+                    labels.add(sdf.parse("28/01/2019"));
+                    labels.add(sdf.parse("29/01/2019"));
+                    labels.add(sdf.parse("30/01/2019"));
+                    labels.add(sdf.parse("31/01/2019"));
+                    for (int i = 0; i < labels.size(); i++) {
+                        entries.add(new Entry(0, i));
+                    }
+                    break;
+                case EST_SCORE_HEBDOMADAIRE:
+                    labels.add(sdf.parse("01/01/2019"));
+                    labels.add(sdf.parse("02/01/2019"));
+                    labels.add(sdf.parse("03/01/2019"));
+                    labels.add(sdf.parse("04/01/2019"));
+                    labels.add(sdf.parse("05/01/2019"));
+                    labels.add(sdf.parse("06/01/2019"));
+                    labels.add(sdf.parse("07/01/2019"));
+                    for (int i = 0; i < labels.size(); i++) {
+                        entries.add(new Entry(0, i));
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public double getDistanceParcourue() {
+        return distanceParcourue;
+    }
+
+    public void setDistanceParcourue(double distanceParcourue) {
+        this.distanceParcourue = distanceParcourue;
+    }
+
+    public double getDureeParcourue() {
+        return dureeParcourue;
+    }
+
+    public void setDureeParcourue(double dureeParcourue) {
+        this.dureeParcourue = dureeParcourue;
+    }
+
+    public double getConsommationTotale() {
+        return consommationTotale;
+    }
+
+    public void setConsommationTotale(double consommationTotale) {
+        this.consommationTotale = consommationTotale;
+    }
+/*
+    public Score(int typeScore, boolean periodeEnCoursOuXDernieresSousPeriode) {
         this.typeScore = typeScore;
         this.periodeEnCoursOuXDernieresSousPeriode = periodeEnCoursOuXDernieresSousPeriode;
         if(Math.random()>0.5)estPeriodeEnCours=true;else estPeriodeEnCours=false;
@@ -49,56 +170,215 @@ public class Score {
         consommationTotale = Math.random()*70000;
         pourcentageMixeVille = Math.random();
         entries = new ArrayList<>();
-        dataset = new LineDataSet(entries, "# de Scores");
-        labels = new ArrayList<String>();
-        if (typeScore==this.EST_SCORE_ANNUEL) {
-            labels.add("Janvier");
-            labels.add("Février");
-            labels.add("Mars");
-            labels.add("Avril");
-            labels.add("Mai");
-            labels.add("Juin");
-            labels.add("Juillet");
-            labels.add("Août");
-            labels.add("Septembre");
-            labels.add("Octobre");
-            labels.add("Novobre");
-            labels.add("Decembre");
-            for(int i=0;i<labels.size();i++) {
-                entries.add(new Entry((float)Math.random()*20, i));
-            }
-        } else if(typeScore==this.EST_SCORE_MENSUEL)
-        {
-            for(int i=0;i<31;i++) {
-                labels.add(Integer.toString(i));
-                entries.add(new Entry((float)Math.random()*20, i));
-            }
-        }
-        else if (typeScore==this.EST_SCORE_HEBDOMADAIRE)
-        {
-            labels.add("Lundi");
-            labels.add("Mardi");
-            labels.add("Mercredi");
-            labels.add("Jeudi");
-            labels.add("Vendredi");
-            labels.add("Samedi");
-            labels.add("Dimanche");
-            for(int i=0;i<labels.size();i++) {
-                entries.add(new Entry((float)Math.random()*20, i));
-            }
-        }
-    }
+        labels = new ArrayList<Date>();
 
-    public LineDataSet getDataset() {
-        return dataset;
-    }
+        SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
+
+        try {
+
+
+            switch (typeScore) {
+                case EST_SCORE_ANNUEL:
+                    labels.add(sdf.parse("01/01/2019"));
+                    labels.add(sdf.parse("01/02/2019"));
+                    labels.add(sdf.parse("01/03/2019"));
+                    labels.add(sdf.parse("01/04/2019"));
+                    labels.add(sdf.parse("01/05/2019"));
+                    labels.add(sdf.parse("01/06/2019"));
+                    labels.add(sdf.parse("01/07/2019"));
+                    labels.add(sdf.parse("01/08/2019"));
+                    labels.add(sdf.parse("01/09/2019"));
+                    labels.add(sdf.parse("01/10/2019"));
+                    labels.add(sdf.parse("01/11/2019"));
+                    labels.add(sdf.parse("01/12/2019"));
+                    for (int i = 0; i < labels.size(); i++) {
+                        entries.add(new Entry(0, i));
+                    }
+                    break;
+                case EST_SCORE_MENSUEL:
+                    labels.add(sdf.parse("01/01/2019"));
+                    labels.add(sdf.parse("02/01/2019"));
+                    labels.add(sdf.parse("03/01/2019"));
+                    labels.add(sdf.parse("04/01/2019"));
+                    labels.add(sdf.parse("05/01/2019"));
+                    labels.add(sdf.parse("06/01/2019"));
+                    labels.add(sdf.parse("07/01/2019"));
+                    labels.add(sdf.parse("08/01/2019"));
+                    labels.add(sdf.parse("09/01/2019"));
+                    labels.add(sdf.parse("10/01/2019"));
+                    labels.add(sdf.parse("11/01/2019"));
+                    labels.add(sdf.parse("12/01/2019"));
+                    labels.add(sdf.parse("13/01/2019"));
+                    labels.add(sdf.parse("14/01/2019"));
+                    labels.add(sdf.parse("15/01/2019"));
+                    labels.add(sdf.parse("16/01/2019"));
+                    labels.add(sdf.parse("17/01/2019"));
+                    labels.add(sdf.parse("18/01/2019"));
+                    labels.add(sdf.parse("19/01/2019"));
+                    labels.add(sdf.parse("20/01/2019"));
+                    labels.add(sdf.parse("21/01/2019"));
+                    labels.add(sdf.parse("22/01/2019"));
+                    labels.add(sdf.parse("23/01/2019"));
+                    labels.add(sdf.parse("24/01/2019"));
+                    labels.add(sdf.parse("25/01/2019"));
+                    labels.add(sdf.parse("26/01/2019"));
+                    labels.add(sdf.parse("27/01/2019"));
+                    labels.add(sdf.parse("28/01/2019"));
+                    labels.add(sdf.parse("29/01/2019"));
+                    labels.add(sdf.parse("30/01/2019"));
+                    labels.add(sdf.parse("31/01/2019"));
+                    for (int i = 0; i < labels.size(); i++) {
+                        entries.add(new Entry(0, i));
+                    }
+                    break;
+                case EST_SCORE_HEBDOMADAIRE:
+                    labels.add(sdf.parse("01/01/2019"));
+                    labels.add(sdf.parse("02/01/2019"));
+                    labels.add(sdf.parse("03/01/2019"));
+                    labels.add(sdf.parse("04/01/2019"));
+                    labels.add(sdf.parse("05/01/2019"));
+                    labels.add(sdf.parse("06/01/2019"));
+                    labels.add(sdf.parse("07/01/2019"));
+                    for (int i = 0; i < labels.size(); i++) {
+                        entries.add(new Entry(0, i));
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }*/
+
 
     public ArrayList<String> getLabels() {
-        return labels;
+        ArrayList<String> strlabels = new ArrayList<String>();
+        for(int i =0;i<labels.size();i++)
+        {
+            strlabels.add(new String(labels.get(i).toString()));
+        }
+        return strlabels;
     }
 
     public ArrayList<Entry> getEntries() {
         return entries;
+    }
+
+    public void setValueOf(Date date, float value )
+    {
+        int index = getIndexOfDate(date);
+        entries.get(index).setVal(value);
+    }
+
+    private int getIndexOfDate(Date date)
+    {
+        for(int i=0;i<labels.size()-1;i++)
+        {
+            if(date.after(labels.get(i)) && date.before(labels.get(i+1)))
+            {
+                return i;
+            }
+        }
+        return labels.size();
+    }
+
+    public int getTypeScore() {
+        return typeScore;
+    }
+
+    public boolean isPeriodeEnCoursOuXDernieresSousPeriode() {
+        return periodeEnCoursOuXDernieresSousPeriode;
+    }
+
+    public boolean isEstPeriodeEnCours() {
+        return estPeriodeEnCours;
+    }
+
+    public boolean isEstScoreConduiteDemande() {
+        return estScoreConduiteDemande;
+    }
+
+    public double getEmissionTotalCO2() {
+        return emissionTotalCO2;
+    }
+
+    public boolean isEstTendanceHaussiere() {
+        return estTendanceHaussiere;
+    }
+
+    public double getConsomationCible() {
+        return consomationCible;
+    }
+
+    public double getGainConsommation() {
+        return gainConsommation;
+    }
+
+    public double getPourcentageMixeVille() {
+        return pourcentageMixeVille;
+    }
+
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setTypeScore(int typeScore) {
+        this.typeScore = typeScore;
+    }
+
+    public void setPeriodeEnCoursOuXDernieresSousPeriode(boolean periodeEnCoursOuXDernieresSousPeriode) {
+        this.periodeEnCoursOuXDernieresSousPeriode = periodeEnCoursOuXDernieresSousPeriode;
+    }
+
+    public void setEstPeriodeEnCours(boolean estPeriodeEnCours) {
+        this.estPeriodeEnCours = estPeriodeEnCours;
+    }
+
+    public void setEstScoreConduiteDemande(boolean estScoreConduiteDemande) {
+        this.estScoreConduiteDemande = estScoreConduiteDemande;
+    }
+
+    public void setEmissionTotalCO2(double emissionTotalCO2) {
+        this.emissionTotalCO2 = emissionTotalCO2;
+    }
+
+    public void setEstTendanceHaussiere(boolean estTendanceHaussiere) {
+        this.estTendanceHaussiere = estTendanceHaussiere;
+    }
+
+    public void setConsomationCible(double consomationCible) {
+        this.consomationCible = consomationCible;
+    }
+
+    public void setGainConsommation(double gainConsommation) {
+        this.gainConsommation = gainConsommation;
+    }
+
+    public void setPourcentageMixeVille(double pourcentageMixeVille) {
+        this.pourcentageMixeVille = pourcentageMixeVille;
+    }
+
+    public void setEntries(ArrayList<Entry> entries) {
+        this.entries = entries;
+    }
+
+    public void setLabels(ArrayList<Date> labels) {
+        this.labels = labels;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
     }
 }
 
