@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        typeScore = Score.EST_SCORE_HEBDOMADAIRE;
+        typeScore = Score.EST_SCORE_ANNUEL;
         periodeEnCoursOuXDernieresSousPeriode = false;
 
         setContentView(R.layout.activity_main);
@@ -219,31 +219,31 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         System.out.println("1. Touche event detected");
-        //int action = event.getAction();
-        System.out.println("1. Event action : ");
-//        System.out.println("Action Event : " );
-//        int idCurrentDestination = navController.getCurrentDestination().getId();
-//        int idNextDestination;
-//        switch (idCurrentDestination)
-//        {
-//            case R.id.nav_score_annuel:
-//                idNextDestination = R.id.nav_score_mensuel;
-//                //navController.navigate(idNextDestination);
-//                typeScore = Score.EST_SCORE_MENSUEL;
-//                break;
-//            case R.id.nav_score_mensuel:
-//                idNextDestination = R.id.nav_score_hebdomadaire;
-//               // navController.navigate(idNextDestination);
-//                typeScore = Score.EST_SCORE_HEBDOMADAIRE;
-//                break;
-//            case R.id.nav_score_hebdomadaire:
-//            /*    idNextDestination = R.id.nav_score_annuel;
-//                navController.navigate(idNextDestination);
-//                typeScore = Score.EST_SCORE_ANNUEL;*/
-//                break;
-//            default:
-//                break;
-//        }
+
+        if(event.getAction()==MotionEvent.ACTION_DOWN) {
+            int idCurrentDestination = navController.getCurrentDestination().getId();
+            int idNextDestination;
+            switch (idCurrentDestination) {
+                case R.id.nav_score_annuel:
+                    idNextDestination = R.id.nav_score_mensuel;
+                    navController.navigate(idNextDestination);
+                    typeScore = Score.EST_SCORE_MENSUEL;
+                    break;
+                case R.id.nav_score_mensuel:
+                    idNextDestination = R.id.nav_score_hebdomadaire;
+                    navController.navigate(idNextDestination);
+                    typeScore = Score.EST_SCORE_HEBDOMADAIRE;
+                    break;
+                case R.id.nav_score_hebdomadaire:
+                    idNextDestination = R.id.nav_score_annuel;
+                    navController.navigate(idNextDestination);
+                    typeScore = Score.EST_SCORE_ANNUEL;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         return true;
     }
 

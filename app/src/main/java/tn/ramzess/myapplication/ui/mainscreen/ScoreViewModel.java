@@ -27,7 +27,8 @@ public class ScoreViewModel extends ViewModel {
     ArrayList<String> labels = new ArrayList<String>();
     Score score;// = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);;
 
-    public ScoreViewModel() {
+    public ScoreViewModel(int typeScore) {
+        this.typeScore = typeScore;
         Database database = new Database();
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
         Date dateDeb= new Date();
@@ -41,7 +42,7 @@ public class ScoreViewModel extends ViewModel {
         }
 
         Score score;// = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);
-        score = database.getScore(new Chauffeur(1, "Bond", "James"),dateDeb,dateFin,Score.EST_SCORE_HEBDOMADAIRE);
+        score = database.getScore(new Chauffeur(1, "Bond", "James"),dateDeb,dateFin,typeScore);
         if(score != null) {
             entries = score.getEntries();
             dataset = new LineDataSet(entries, "# de Scores");

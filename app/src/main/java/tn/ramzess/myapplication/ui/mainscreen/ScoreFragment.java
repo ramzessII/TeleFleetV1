@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -29,10 +28,11 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        scoreViewModel =
-                ViewModelProviders.of(this).get(ScoreViewModel.class);
+ /*       scoreViewModel =
+                ViewModelProviders.of(this).get(ScoreViewModel.class);*/
         View root = inflater.inflate(R.layout.score_fragement, container, false);
 
+        scoreViewModel = new ScoreViewModel(((MainActivity)getActivity()).getTypeScore());
         ArrayList<Entry> entries = scoreViewModel.getEntries();
         LineDataSet dataset = scoreViewModel.getDataset();
         ArrayList<String> labels = scoreViewModel.getLabels();
