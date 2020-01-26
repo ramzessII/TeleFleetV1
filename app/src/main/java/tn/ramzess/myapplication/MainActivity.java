@@ -26,9 +26,14 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+
+import tn.ramzess.myapplication.business.Score;
+import tn.ramzess.myapplication.ui.mainscreen.scores.ScoreAnnuelFragment;
 
 public class MainActivity extends AppCompatActivity implements LocationListener, View.OnTouchListener  {
     private LocationManager locationManager;
@@ -41,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     NavigationView navigationView;
     NavController navController;
 
+    private int typeScore;
+    private boolean periodeEnCoursOuXDernieresSousPeriode;
+
     BarChart chart ;
     ArrayList<BarEntry> chartValues ;
     ArrayList<String> chartLabels ;
@@ -51,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        typeScore = Score.EST_SCORE_ANNUEL;
+        periodeEnCoursOuXDernieresSousPeriode = false;
 
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.main_toolbar);
@@ -210,33 +220,33 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         System.out.println("1. Event action : ");
         System.out.println("Action Event : " );
         int idCurrentDestination = navController.getCurrentDestination().getId();
-        int idNextDestination = navController.getGraph().getStartDestination();
+        int idNextDestination;
         switch (idCurrentDestination)
         {
             case R.id.nav_score_annuel:
                 idNextDestination = R.id.nav_score_mensuel;
+                //navController.navigate(idNextDestination);
+                typeScore = Score.EST_SCORE_MENSUEL;
                 break;
             case R.id.nav_score_mensuel:
                 idNextDestination = R.id.nav_score_hebdomadaire;
+               // navController.navigate(idNextDestination);
+                typeScore = Score.EST_SCORE_HEBDOMADAIRE;
                 break;
             case R.id.nav_score_hebdomadaire:
-                idNextDestination = R.id.nav_score_annuel;
+            /*    idNextDestination = R.id.nav_score_annuel;
+                navController.navigate(idNextDestination);
+                typeScore = Score.EST_SCORE_ANNUEL;*/
                 break;
             default:
                 break;
         }
-
-        try {
-            navController.navigate(idNextDestination);
-
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
         return true;
+    }
+
+    public void onChartValueSelected(Entry e, int dataSetIndex, Highlight h)
+    {
+        System.out.println("Chart : La9ad tama e5tiyar charta dataset="+dataSetIndex + "Entry =" + e.toString());
     }
 }
 
