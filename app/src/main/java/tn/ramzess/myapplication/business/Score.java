@@ -107,7 +107,7 @@ public class Score {
                     labels.add(sdf.parse("30/01/2019"));
                     labels.add(sdf.parse("31/01/2019"));
                     for (int i = 0; i < labels.size(); i++) {
-                        entries.add(new Entry(0, i));
+                        entries.add(new Entry((float)Math.random(), i));
                     }
                     break;
                 case EST_SCORE_HEBDOMADAIRE:
@@ -119,7 +119,7 @@ public class Score {
                     labels.add(sdf.parse("06/01/2019"));
                     labels.add(sdf.parse("07/01/2019"));
                     for (int i = 0; i < labels.size(); i++) {
-                        entries.add(new Entry(0, i));
+                        entries.add(new Entry((float)Math.random(), i));
                     }
                     break;
                 default:
@@ -269,20 +269,22 @@ public class Score {
 
     public void setValueOf(Date date, float value )
     {
-        int index = getIndexOfDate(date);
-        entries.get(index).setVal(value);
-    }
-
-    private int getIndexOfDate(Date date)
-    {
         for(int i=0;i<labels.size()-1;i++)
         {
             if(date.after(labels.get(i)) && date.before(labels.get(i+1)))
             {
-                return i;
+                entries.get(i).setVal(value);
+                return;
             }
         }
-        return labels.size();
+        long intervalle = labels.get(1).getTime()-labels.get(0).getTime();
+        long dateprochaine = labels.get(labels.size()-1).getTime()+intervalle;
+        Date d = new Date(dateprochaine);
+
+        if(date.after(labels.get(labels.size()-1))&&date.before(d))
+        {
+            entries.get(labels.size()-1).setVal(value);
+        }
     }
 
     public int getTypeScore() {

@@ -17,7 +17,7 @@ import tn.ramzess.myapplication.dao.Database;
 
 public class ScoreViewModel extends ViewModel {
 
-    private int typeScore;
+    private int typeScore =0 ;
     private boolean periodeEnCoursOuXDernieresSousPeriode;
 
     private MutableLiveData<String> mText;
@@ -41,7 +41,7 @@ public class ScoreViewModel extends ViewModel {
         }
 
         Score score;// = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);
-        score = database.getScore(new Chauffeur(1, "Bond", "James"),dateDeb,dateFin,Score.EST_SCORE_ANNUEL);
+        score = database.getScore(new Chauffeur(1, "Bond", "James"),dateDeb,dateFin,Score.EST_SCORE_HEBDOMADAIRE);
         if(score != null) {
             entries = score.getEntries();
             dataset = new LineDataSet(entries, "# de Scores");

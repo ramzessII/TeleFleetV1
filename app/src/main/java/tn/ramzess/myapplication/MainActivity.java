@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     NavigationView navigationView;
     NavController navController;
 
+    public int getTypeScore() {
+        return typeScore;
+    }
+
     private int typeScore;
     private boolean periodeEnCoursOuXDernieresSousPeriode;
 
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        typeScore = Score.EST_SCORE_ANNUEL;
+        typeScore = Score.EST_SCORE_HEBDOMADAIRE;
         periodeEnCoursOuXDernieresSousPeriode = false;
 
         setContentView(R.layout.activity_main);
