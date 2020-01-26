@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/id_tablayout_annee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_item_period1"
+                style="@style/TabViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Année en cours" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_item_period2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12 derniers mois" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score Eco Conduite" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score de Sécurité" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/shape_edit_text_enabled">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="20dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout3"
+                            android:layout_width="120dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/shape_edit_text_enabled"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@mipmap/driver" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="5dp"
+                                    android:gravity="center"
+                                    android:text="Emission \ntotale"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtEmissionTotale"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:text="100 Kg" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="120dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/shape_edit_text_enabled"
+                            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/linearLayout3">
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@mipmap/driver" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="5dp"
+                                    android:gravity="center"
+                                    android:text="Tendence"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtTendance"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Positive" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout2"
+                            android:layout_width="120dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="10dp"
+                            android:layout_marginEnd="293dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/shape_edit_text_enabled"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@mipmap/driver" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="5dp"
+                                    android:gravity="center"
+                                    android:text="Conso \ncible"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtConsoCible"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Positive" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="181dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/shape_edit_text_enabled"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Information su la période"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="170dp"
+                            android:layout_height="70dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/shape_edit_text_enabled"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/imageView6"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@mipmap/driver_foreground" />
+
+                            <TextView
+                                android:id="@+id/textView15"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="Distance parcourue" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="170dp"
+                            android:layout_height="70dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/shape_edit_text_enabled"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/imageView7"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@mipmap/driver_foreground" />
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="Durée totale" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="170dp"
+                            android:layout_height="70dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_edit_text_enabled"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <ImageView
+                                android:id="@+id/imageView8"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@mipmap/driver_foreground" />
+
+                            <TextView
+                                android:id="@+id/textView17"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="Consomation total" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="170dp"
+                            android:layout_height="70dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_edit_text_enabled"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <ImageView
+                                android:id="@+id/imageView9"
+                                android:layout_width="40dp"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@mipmap/driver_foreground" />
+
+                            <TextView
+                                android:id="@+id/textView18"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="Mix/Ville" />
+
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/chart_scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/shape_edit_text_enabled"
+                    android:orientation="vertical">
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/chart1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
