@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import tn.ramzess.myapplication.MainActivity;
 import tn.ramzess.myapplication.R;
+import tn.ramzess.myapplication.business.Score;
 
 public class ScoreFragment extends Fragment implements OnChartValueSelectedListener {
 
@@ -31,8 +32,25 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
  /*       scoreViewModel =
                 ViewModelProviders.of(this).get(ScoreViewModel.class);*/
         View root = inflater.inflate(R.layout.score_fragement, container, false);
+        int idfragmet = this.getId();
+        switch (idfragmet)
+        {
+            case R.id.fragmentannuel:
+                scoreViewModel=new ScoreViewModel(Score.EST_SCORE_ANNUEL);
+                break;
+            case R.id.fragmentmensuel:
+                scoreViewModel=new ScoreViewModel(Score.EST_SCORE_MENSUEL);
+                break;
+            case R.id.fragemethebdomadaire:
+                scoreViewModel=new ScoreViewModel(Score.EST_SCORE_HEBDOMADAIRE);
+                break;
+            case R.id.fragmentjournalier:
+                scoreViewModel=new ScoreViewModel(Score.EST_SCORE_JOURNALIER);
+                break;
+        }
 
-        scoreViewModel = new ScoreViewModel(((MainActivity)getActivity()).getTypeScore());
+
+        scoreViewModel=new ScoreViewModel(Score.EST_SCORE_ANNUEL);
         ArrayList<Entry> entries = scoreViewModel.getEntries();
         LineDataSet dataset = scoreViewModel.getDataset();
         ArrayList<String> labels = scoreViewModel.getLabels();

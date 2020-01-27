@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <fragment
-        android:id="@+id/fragment2"
+        android:id="@+id/fragmentannuel"
         android:name="tn.ramzess.myapplication.ui.mainscreen.ScoreFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

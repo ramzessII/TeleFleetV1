@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     DrawerLayout drawer;
     NavigationView navigationView;
     NavController navController;
+    float oldTouchX = 0;
+    float oldTouchY = 0;
+    boolean ignoreOnTouche = false;
 
     public int getTypeScore() {
         return typeScore;
@@ -218,32 +221,94 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        System.out.println("1. Touche event detected");
-
-        if(event.getAction()==MotionEvent.ACTION_DOWN) {
-            int idCurrentDestination = navController.getCurrentDestination().getId();
-            int idNextDestination;
-            switch (idCurrentDestination) {
-                case R.id.nav_score_annuel:
-                    idNextDestination = R.id.nav_score_mensuel;
-                    navController.navigate(idNextDestination);
-                    typeScore = Score.EST_SCORE_MENSUEL;
-                    break;
-                case R.id.nav_score_mensuel:
-                    idNextDestination = R.id.nav_score_hebdomadaire;
-                    navController.navigate(idNextDestination);
-                    typeScore = Score.EST_SCORE_HEBDOMADAIRE;
-                    break;
-                case R.id.nav_score_hebdomadaire:
-                    idNextDestination = R.id.nav_score_annuel;
-                    navController.navigate(idNextDestination);
-                    typeScore = Score.EST_SCORE_ANNUEL;
-                    break;
-                default:
-                    break;
+        if(event.getAction()==MotionEvent.ACTION_DOWN)
+        {
+            oldTouchX = event.getX();
+            oldTouchY = event.getY();
+            if( oldTouchX < 50) {
+                System.out.println ("X="+oldTouchX+ " => Trop près du menu" + event.toString());
+                ignoreOnTouche = true;
+                return false;
             }
-        }
 
+        }
+        if(event.getAction()==MotionEvent.ACTION_UP){
+                if (ignoreOnTouche) {
+                    ignoreOnTouche = false;
+                    System.out.println("Show context menu");
+                    return false; //Laisser l'evenement au menu sandwich
+                }
+                ignoreOnTouche = false;
+                float upX1 = event.getX();
+                float upY1 = event.getY();
+
+                float tracetX = oldTouchX - upX1;
+                float tracetY = oldTouchY - upY1;
+
+                if (Math.abs(tracetX) > Math.abs(tracetY)) // honrizontal
+                {
+                    if (tracetX > 100) {
+
+                        onLeftToRighSwipe();
+                        return true;
+                    } else if (tracetX < -100) {
+                        onRighToLeftSwipe();
+                        return true;
+                    }
+                } else // verticla swipe
+                {
+                    if (tracetY > 100) {
+                        onBottomToTopSwipe();
+                        return true;
+                    } else if (tracetY < -100) {
+                        onTopToBottomSwipe();
+                        return true;
+                    }
+                }
+        }
+        return true;
+    }
+
+    public boolean onLeftToRighSwipe()
+    {
+        System.out.println("onLeftToRighSwipe");
+        int idCurrentDestination = navController.getCurrentDestination().getId();
+        int idNextDestination;
+        switch (idCurrentDestination) {
+            case R.id.nav_score_annuel:
+                idNextDestination = R.id.nav_score_mensuel;
+                navController.navigate(idNextDestination);
+                break;
+            case R.id.nav_score_mensuel:
+                idNextDestination = R.id.nav_score_hebdomadaire;
+                navController.navigate(idNextDestination);
+                break;
+            case R.id.nav_score_hebdomadaire:
+                //idNextDestination = R.id.nav_score_annuel;
+                //navController.navigate(idNextDestination);
+                break;
+            default:
+                break;
+        }
+        drawer.refreshDrawableState();
+        return true;
+    }
+
+    public boolean onRighToLeftSwipe()
+    {
+        System.out.println("onRighToLeftSwipe");
+        return true;
+    }
+
+    public boolean onTopToBottomSwipe()
+    {
+        System.out.println("onTopToBottomSwipe");
+        return true;
+    }
+
+    public boolean onBottomToTopSwipe()
+    {
+        System.out.println("onBottomToTop Swipe");
         return true;
     }
 

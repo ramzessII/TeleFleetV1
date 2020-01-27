@@ -74,21 +74,9 @@
                             <option name="y" value="360" />
                           </Point>
                         </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="nav_score_hebdomadaire">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="88" />
-                            <option name="y" value="-296" />
-                          </Point>
-                        </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_nav_score_hebdomadaire_to_nav_mainScreen">
+                            <entry key="action_nav_score_annuel_to_nav_score_mensuel">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -98,14 +86,35 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="nav_score_hebdomadaire">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="132" />
+                            <option name="y" value="236" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="nav_score_mensuel">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="244" />
-                            <option name="y" value="384" />
+                            <option name="x" value="-192" />
+                            <option name="y" value="360" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_nav_score_mensuel_to_nav_score_hebdomadaire">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

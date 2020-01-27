@@ -17,7 +17,7 @@ public final class Database {
     public Database() {
         Chauffeur chauffeur = new Chauffeur(1,"Bond","James");
         double distance = Math.random()*150;
-        for(int i=0;i<10000;i++)
+        for(int i=0;i<3000;i++)
         {
             trajetsDao.add(new Trajet(chauffeur,distance));
         }

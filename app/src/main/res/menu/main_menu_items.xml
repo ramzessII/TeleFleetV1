@@ -2,12 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_mainScreen"
-            android:icon="@drawable/ic_menu_main_screen"
-            android:title="@string/menu_mainScreen" />
         <item
             android:id="@+id/nav_compte"
             android:icon="@drawable/ic_menu_compte"
@@ -24,15 +18,9 @@
             android:id="@+id/nav_parametres"
             android:icon="@drawable/ic_menu_parametres"
             android:title="@string/menu_parametres"/>
-    </group>
-<!--
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
-        </menu>
-    </item>-->
+        <item
+            android:id="@+id/nav_score_annuel"
+            android:icon="@drawable/ic_menu_parametres"
+            android:title="Scores"/>
 
 </menu>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_score_annuel">
+    app:startDestination="@+id/nav_compte">
 
 
     <fragment
@@ -11,9 +11,6 @@
         android:name="tn.ramzess.myapplication.ui.compte.CompteFragment"
         android:label="@string/menu_compte"
         tools:layout="@layout/fragment_compte" >
-        <action
-            android:id="@+id/action_nav_compte_to_nav_mainScreen"
-            app:destination="@id/nav_mainScreen" />
     </fragment>
 
     <fragment
@@ -44,21 +41,20 @@
         android:id="@+id/nav_score_annuel"
         android:name="tn.ramzess.myapplication.ui.mainscreen.scores.ScoreAnnuelFragment"
         android:label="Score annuel"
-        tools:layout="@layout/score_annuel_fragment" />
+        tools:layout="@layout/score_annuel_fragment" >
+    </fragment>
 
     <fragment
         android:id="@+id/nav_score_mensuel"
         android:name="tn.ramzess.myapplication.ui.mainscreen.scores.ScoreMensuelFragment"
         android:label="Score mensuel"
-        tools:layout="@layout/score_mensuel_fragment" />
+        tools:layout="@layout/score_mensuel_fragment" >
+    </fragment>
 
     <fragment
         android:id="@+id/nav_score_hebdomadaire"
         android:name="tn.ramzess.myapplication.ui.mainscreen.scores.ScoreHebdomadaireFragment"
         android:label="Score hebdomadaire"
         tools:layout="@layout/score_hebdomadare_fragment" >
-        <action
-            android:id="@+id/action_nav_score_hebdomadaire_to_nav_mainScreen"
-            app:destination="@id/nav_mainScreen" />
     </fragment>
 </navigation>
