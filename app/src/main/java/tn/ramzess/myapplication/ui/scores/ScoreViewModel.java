@@ -1,4 +1,4 @@
-package tn.ramzess.myapplication.ui.mainscreen;
+package tn.ramzess.myapplication.ui.scores;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -17,7 +17,8 @@ import tn.ramzess.myapplication.dao.Database;
 
 public class ScoreViewModel extends ViewModel {
 
-    private int typeScore =0 ;
+    private int typePeriodeScore =Score.SCORE_ANNUEL ;
+    private int typeSecurite = Score.SCORE_ECO_CONDUIE;
     private boolean periodeEnCoursOuXDernieresSousPeriode;
 
     private MutableLiveData<String> mText;
@@ -25,7 +26,7 @@ public class ScoreViewModel extends ViewModel {
     ArrayList<Entry> entries = new ArrayList<>();
     LineDataSet dataset = new LineDataSet(entries, "# de Scores");
     ArrayList<String> labels = new ArrayList<String>();
-    Score score;// = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);;
+    Score score;// = new Score(Score.SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);;
 
     public ScoreViewModel() {
         mText = new MutableLiveData<>();
@@ -48,9 +49,11 @@ public class ScoreViewModel extends ViewModel {
         return entries;
     }
 
-    public void updateData(int typeScore)
+    public void updateData(int typePeriodeScore,int typeSecurite)
     {
-        this.typeScore = typeScore;
+        this.typePeriodeScore = typePeriodeScore;
+
+
         Database database = new Database();
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
         Date dateDeb= new Date();
@@ -63,8 +66,8 @@ public class ScoreViewModel extends ViewModel {
             e.printStackTrace();
         }
 
-        Score score;// = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);
-        score = database.getScore(new Chauffeur(1, "Bond", "James"),dateDeb,dateFin,typeScore);
+        Score score;// = new Score(Score.SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);
+        score = database.getScore(new Chauffeur(1, "Bond", "James"),dateDeb,dateFin,typePeriodeScore,typeSecurite);
         if(score != null) {
             entries = score.getEntries();
             dataset = new LineDataSet(entries, "# de Scores");

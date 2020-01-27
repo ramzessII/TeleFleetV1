@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragmentannuel"
-        android:name="tn.ramzess.myapplication.ui.mainscreen.ScoreFragment"
+        android:name="tn.ramzess.myapplication.ui.scores.ScoreFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </RelativeLayout>

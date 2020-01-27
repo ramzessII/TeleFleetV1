@@ -9,13 +9,16 @@ import java.util.Date;
 
 public class Score {
     public static final boolean PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE = true;
-    public static final int EST_SCORE_ANNUEL = 1;
-    public static final int EST_SCORE_MENSUEL = 2;
-    public static final int EST_SCORE_HEBDOMADAIRE = 3;
-    public static final int EST_SCORE_JOURNALIER = 4;
+    public static final int SCORE_ANNUEL = 1;
+    public static final int SCORE_MENSUEL = 2;
+    public static final int SCORE_HEBDOMADAIRE = 3;
+    public static final int SCORE_JOURNALIER = 4;
+    public static final int SCORE_ECO_CONDUIE = 5;
+    public static final int SCORE_SECURITE = 5;
 
 
-    private int typeScore;
+    private int typePeriodeScore;
+    private int typeSecurite;
     private boolean periodeEnCoursOuXDernieresSousPeriode;
     private boolean estPeriodeEnCours;
 
@@ -34,8 +37,11 @@ public class Score {
     private Date dateDebut;
     private Date dateFin;
 
-    public Score(int typeSCore) {
-        this.typeScore = typeSCore;
+    public Score(int typePeriodeScore,int typeSecurite,Date dDebut,Date dFin) {
+        this.typePeriodeScore = typePeriodeScore;
+        this.typeSecurite = typeSecurite;
+        dateDebut = dDebut;
+        dateFin=dFin;
         this.periodeEnCoursOuXDernieresSousPeriode = PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE;
         estPeriodeEnCours=true;
         estScoreConduiteDemande=true;
@@ -55,8 +61,8 @@ public class Score {
         try {
 
 
-            switch (typeScore) {
-                case EST_SCORE_ANNUEL:
+            switch (typePeriodeScore) {
+                case SCORE_ANNUEL:
                     labels.add(sdf.parse("01/01/2019"));
                     labels.add(sdf.parse("01/02/2019"));
                     labels.add(sdf.parse("01/03/2019"));
@@ -74,7 +80,7 @@ public class Score {
                     }
 
                     break;
-                case EST_SCORE_MENSUEL:
+                case SCORE_MENSUEL:
                     labels.add(sdf.parse("01/01/2019"));
                     labels.add(sdf.parse("02/01/2019"));
                     labels.add(sdf.parse("03/01/2019"));
@@ -110,7 +116,7 @@ public class Score {
                         entries.add(new Entry((float)Math.random(), i));
                     }
                     break;
-                case EST_SCORE_HEBDOMADAIRE:
+                case SCORE_HEBDOMADAIRE:
                     labels.add(sdf.parse("01/01/2019"));
                     labels.add(sdf.parse("02/01/2019"));
                     labels.add(sdf.parse("03/01/2019"));
@@ -156,8 +162,8 @@ public class Score {
         this.consommationTotale = consommationTotale;
     }
 /*
-    public Score(int typeScore, boolean periodeEnCoursOuXDernieresSousPeriode) {
-        this.typeScore = typeScore;
+    public Score(int typePeriodeScore, boolean periodeEnCoursOuXDernieresSousPeriode) {
+        this.typePeriodeScore = typePeriodeScore;
         this.periodeEnCoursOuXDernieresSousPeriode = periodeEnCoursOuXDernieresSousPeriode;
         if(Math.random()>0.5)estPeriodeEnCours=true;else estPeriodeEnCours=false;
         if(Math.random()>0.5)estScoreConduiteDemande=true;else estScoreConduiteDemande=false;
@@ -177,7 +183,7 @@ public class Score {
         try {
 
 
-            switch (typeScore) {
+            switch (typePeriodeScore) {
                 case EST_SCORE_ANNUEL:
                     labels.add(sdf.parse("01/01/2019"));
                     labels.add(sdf.parse("01/02/2019"));
@@ -293,7 +299,7 @@ public class Score {
     }
 
     public int getTypeScore() {
-        return typeScore;
+        return typePeriodeScore;
     }
 
     public boolean isPeriodeEnCoursOuXDernieresSousPeriode() {
@@ -336,8 +342,8 @@ public class Score {
         return dateFin;
     }
 
-    public void setTypeScore(int typeScore) {
-        this.typeScore = typeScore;
+    public void setTypeScore(int typePeriodeScore) {
+        this.typePeriodeScore = typePeriodeScore;
     }
 
     public void setPeriodeEnCoursOuXDernieresSousPeriode(boolean periodeEnCoursOuXDernieresSousPeriode) {

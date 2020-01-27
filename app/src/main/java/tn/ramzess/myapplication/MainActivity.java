@@ -26,16 +26,13 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import tn.ramzess.myapplication.business.Score;
-import tn.ramzess.myapplication.ui.mainscreen.ScoreFragment;
+import tn.ramzess.myapplication.ui.scores.ScoreFragment;
 
 public class MainActivity extends AppCompatActivity implements LocationListener, View.OnTouchListener  {
     private LocationManager locationManager;
@@ -52,10 +49,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     boolean ignoreOnTouche = false;
 
     public int getTypeScore() {
-        return typeScore;
+        return typePeriodeScore;
     }
 
-    private int typeScore;
+    private int typePeriodeScore;
     private boolean periodeEnCoursOuXDernieresSousPeriode;
 
     BarChart chart ;
@@ -68,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        typeScore = Score.EST_SCORE_ANNUEL;
+        typePeriodeScore = Score.SCORE_ANNUEL;
         periodeEnCoursOuXDernieresSousPeriode = false;
 
         setContentView(R.layout.activity_main);

@@ -39,21 +39,21 @@
 
     <fragment
         android:id="@+id/nav_score_annuel"
-        android:name="tn.ramzess.myapplication.ui.mainscreen.scores.ScoreAnnuelFragment"
+        android:name="tn.ramzess.myapplication.ui.scores.ScoreAnnuelFragment"
         android:label="Score annuel"
         tools:layout="@layout/score_annuel_fragment" >
     </fragment>
 
     <fragment
         android:id="@+id/nav_score_mensuel"
-        android:name="tn.ramzess.myapplication.ui.mainscreen.scores.ScoreMensuelFragment"
+        android:name="tn.ramzess.myapplication.ui.scores.ScoreMensuelFragment"
         android:label="Score mensuel"
         tools:layout="@layout/score_mensuel_fragment" >
     </fragment>
 
     <fragment
         android:id="@+id/nav_score_hebdomadaire"
-        android:name="tn.ramzess.myapplication.ui.mainscreen.scores.ScoreHebdomadaireFragment"
+        android:name="tn.ramzess.myapplication.ui.scores.ScoreHebdomadaireFragment"
         android:label="Score hebdomadaire"
         tools:layout="@layout/score_hebdomadare_fragment" >
     </fragment>

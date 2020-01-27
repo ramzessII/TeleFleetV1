@@ -27,9 +27,9 @@ public final class Database {
 
     }
 
-    public Score getScore(Chauffeur chauffeur, Date dateDebut, Date dateFin, int typeScore)
+    public Score getScore(Chauffeur chauffeur, Date dateDebut, Date dateFin, int typePeriodeScore, int typeSecurite)
     {
-        Score score = new Score(typeScore);
+        Score score = new Score(typePeriodeScore,typeSecurite,dateDebut,dateFin);
         double distanceParourue = 0;
         long duree = 0;
         double consommation = 0;
@@ -51,7 +51,6 @@ public final class Database {
         score.setDistanceParcourue(distanceParourue);
         score.setDureeParcourue(duree);
         score.setConsommationTotale(consommation);
-
         return score;
     }
 

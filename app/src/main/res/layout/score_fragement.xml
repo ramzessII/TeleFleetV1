@@ -11,19 +11,19 @@
         android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/id_tablayout_annee"
+            android:id="@+id/id_tablayout_type_periode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tab_item_period1"
+                android:id="@+id/tab_item_periode1"
                 style="@style/TabViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Année en cours" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tab_item_period2"
+                android:id="@+id/tab_item_periode2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12 derniers mois" />
@@ -31,15 +31,18 @@
         </com.google.android.material.tabs.TabLayout>
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/id_tablayout_type_score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_item_score_eco_conduite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Score Eco Conduite" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_item_score_securite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Score de Sécurité" />

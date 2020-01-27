@@ -1,4 +1,4 @@
-package tn.ramzess.myapplication.ui.mainscreen;
+package tn.ramzess.myapplication.ui.scores;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import tn.ramzess.myapplication.MainActivity;
 import tn.ramzess.myapplication.R;
 import tn.ramzess.myapplication.business.Score;
 
-public class ScoreFragment extends Fragment implements OnChartValueSelectedListener {
+public class ScoreFragment extends Fragment implements OnChartValueSelectedListener, View.OnClickListener {
 
     private ScoreViewModel scoreViewModel;
     private BarChart barChart;
@@ -35,6 +36,9 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
     ArrayList<String> labels;
     LineData data;
     LineChart chart;
+    int typePeriodeScore = Score.SCORE_ANNUEL;
+    int typeScore = Score.SCORE_ECO_CONDUIE;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,16 +49,16 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
         switch (idfragmet)
         {
             case R.id.fragmentannuel:
-                scoreViewModel.updateData(Score.EST_SCORE_ANNUEL);
+                scoreViewModel.updateData(Score.SCORE_ANNUEL,Score.SCORE_ECO_CONDUIE);
                 break;
             case R.id.fragmentmensuel:
-                scoreViewModel.updateData(Score.EST_SCORE_MENSUEL);
+                scoreViewModel.updateData(Score.SCORE_MENSUEL,Score.SCORE_ECO_CONDUIE);
                 break;
             case R.id.fragmenthebdomadaire:
-                scoreViewModel.updateData(Score.EST_SCORE_HEBDOMADAIRE);
+                scoreViewModel.updateData(Score.SCORE_HEBDOMADAIRE,Score.SCORE_ECO_CONDUIE);
                 break;
             case R.id.fragmentjournalier:
-                scoreViewModel.updateData(Score.EST_SCORE_JOURNALIER);
+                scoreViewModel.updateData(Score.SCORE_JOURNALIER,Score.SCORE_ECO_CONDUIE);
                 break;
         }
 
@@ -75,6 +79,38 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
 
     }
 
+    public void initialise(int typePeriodeScore, View calledby)
+    {
+        if(typePeriodeScore == Score.SCORE_ANNUEL ||
+                typePeriodeScore == Score.SCORE_MENSUEL ||
+                typePeriodeScore == Score.SCORE_HEBDOMADAIRE||
+                typePeriodeScore == Score.SCORE_JOURNALIER)
+        {
+            this.typePeriodeScore = typePeriodeScore;
+
+            TabLayout tabLayout = calledby.findViewById(R.id.id_tablayout_type_periode);
+            switch (typePeriodeScore)
+            {
+                case Score.SCORE_ANNUEL:
+                    tabLayout.getTabAt(0).setText("Année en cours");
+                    tabLayout.getTabAt(1).setText("12 derniers mois");
+                    break;
+                case Score.SCORE_MENSUEL:
+                    tabLayout.getTabAt(0).setText("Mois en cours");
+                    tabLayout.getTabAt(1).setText("30 derniers jours");
+                    break;
+                case Score.SCORE_HEBDOMADAIRE:
+                    tabLayout.getTabAt(0).setText("Semaine en cours");
+                    tabLayout.getTabAt(1).setText("7 derniers jours");
+                    break;
+                case Score.SCORE_JOURNALIER:
+                    break;
+            }
+
+
+        }
+
+    }
     @Override
     public void onValueSelected(Entry entry, int dataSetIndex, Highlight h) {
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
@@ -117,4 +153,51 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
     public void onNothingSelected() {
 
     }
+
+    @Override
+    public void onClick(View view)
+    {
+        int idView = view.getId();
+        switch (idView)
+        {
+            case R.id.tab_item_periode1:
+                switch (typePeriodeScore) {
+                    case Score.SCORE_ANNUEL:
+                        // Calculer la nouvelle date de début et de fin
+                        break;
+                    case Score.SCORE_MENSUEL:
+                        // Calculer la nouvelle date de début et de fin
+                        break;
+                    case Score.SCORE_HEBDOMADAIRE:
+                        // Calculer la nouvelle date de début et de fin
+                        break;
+                    case Score.SCORE_JOURNALIER:
+                        break;
+                }
+            case R.id.tab_item_periode2: {
+                switch (typePeriodeScore) {
+                    case Score.SCORE_ANNUEL:
+                        // Calculer la nouvelle date de début et de fin
+                        break;
+                    case Score.SCORE_MENSUEL:
+                        // Calculer la nouvelle date de début et de fin
+                        break;
+                    case Score.SCORE_HEBDOMADAIRE:
+                        // Calculer la nouvelle date de début et de fin
+                        break;
+                    case Score.SCORE_JOURNALIER:
+                        break;
+                }
+            }
+            case R.id.id_tablayout_type_score:
+            {
+
+            }
+
+
+        }
+    }
+
+
+
 }
