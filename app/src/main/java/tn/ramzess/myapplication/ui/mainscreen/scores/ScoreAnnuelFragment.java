@@ -22,12 +22,13 @@ public class ScoreAnnuelFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        scoreViewModel = new ScoreViewModel(Score.EST_SCORE_ANNUEL);
+        scoreViewModel.updateData(Score.EST_SCORE_ANNUEL);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        scoreViewModel = new ScoreViewModel(Score.EST_SCORE_ANNUEL);
+        scoreViewModel = new ScoreViewModel();
+        scoreViewModel.updateData(Score.EST_SCORE_ANNUEL);
         View root = inflater.inflate(R.layout.score_annuel_fragment, container, false);
         TabLayout tabLayout = root.findViewById(R.id.id_tablayout_annee);
         tabLayout.getTabAt(0).setText("Année en cours");

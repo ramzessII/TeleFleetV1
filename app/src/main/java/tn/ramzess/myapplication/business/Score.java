@@ -256,9 +256,14 @@ public class Score {
 
     public ArrayList<String> getLabels() {
         ArrayList<String> strlabels = new ArrayList<String>();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date d;
+        String s;
         for(int i =0;i<labels.size();i++)
         {
-            strlabels.add(new String(labels.get(i).toString()));
+            d = labels.get(i);
+            s = sdf.format(d);
+            strlabels.add(s);
         }
         return strlabels;
     }

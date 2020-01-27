@@ -19,11 +19,12 @@ public class ScoreHebdomadaireFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        scoreViewModel = new ScoreViewModel(Score.EST_SCORE_HEBDOMADAIRE);
+        scoreViewModel.updateData(Score.EST_SCORE_HEBDOMADAIRE);
     }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        scoreViewModel = new ScoreViewModel(Score.EST_SCORE_HEBDOMADAIRE);
+        scoreViewModel = new ScoreViewModel();
+        scoreViewModel.updateData(Score.EST_SCORE_HEBDOMADAIRE);
         View root = inflater.inflate(R.layout.score_hebdomadare_fragment, container, false);
         TabLayout tabLayout = root.findViewById(R.id.id_tablayout_annee);
         tabLayout.getTabAt(0).setText("Semaine en cours");

@@ -31,8 +31,11 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import tn.ramzess.myapplication.business.Score;
+import tn.ramzess.myapplication.ui.mainscreen.ScoreFragment;
 
 public class MainActivity extends AppCompatActivity implements LocationListener, View.OnTouchListener  {
     private LocationManager locationManager;
@@ -297,6 +300,25 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     public boolean onRighToLeftSwipe()
     {
         System.out.println("onRighToLeftSwipe");
+        int idCurrentDestination = navController.getCurrentDestination().getId();
+        int idNextDestination;
+        switch (idCurrentDestination) {
+            case R.id.nav_score_annuel:
+                //idNextDestination = R.id.nav_score_mensuel;
+                //navController.navigate(idNextDestination);
+                break;
+            case R.id.nav_score_mensuel:
+                idNextDestination = R.id.nav_score_annuel;
+                navController.navigate(idNextDestination);
+                break;
+            case R.id.nav_score_hebdomadaire:
+                idNextDestination = R.id.nav_score_mensuel;
+                navController.navigate(idNextDestination);
+                break;
+            default:
+                break;
+        }
+        drawer.refreshDrawableState();
         return true;
     }
 
@@ -312,9 +334,25 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         return true;
     }
 
-    public void onChartValueSelected(Entry e, int dataSetIndex, Highlight h)
+    public void onChartValueSelected(ScoreFragment callerFragment, Date dateDeb,Date dateFin)
     {
-        System.out.println("Chart : La9ad tama e5tiyar charta dataset="+dataSetIndex + "Entry =" + e.toString());
+        int idNextDestination;
+        switch (callerFragment.getId())
+        {
+            case R.id.fragmentannuel:
+                idNextDestination = R.id.nav_score_mensuel;
+                navController.navigate(idNextDestination);
+                break;
+            case R.id.fragmentmensuel:
+                idNextDestination = R.id.nav_score_hebdomadaire;
+                navController.navigate(idNextDestination);
+                break;
+            case R.id.fragmenthebdomadaire:
+                break;
+            case R.id.fragmentjournalier:
+                break;
+        }
+        drawer.refreshDrawableState();
     }
 }
 

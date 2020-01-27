@@ -19,11 +19,12 @@ public class ScoreMensuelFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        scoreViewModel = new ScoreViewModel(Score.EST_SCORE_MENSUEL);
+        scoreViewModel.updateData(Score.EST_SCORE_MENSUEL);
     }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        scoreViewModel = new ScoreViewModel(Score.EST_SCORE_MENSUEL);
+        scoreViewModel = new ScoreViewModel();
+        scoreViewModel.updateData(Score.EST_SCORE_MENSUEL);
         View root = inflater.inflate(R.layout.score_mensuel_fragment, container, false);
         TabLayout tabLayout = root.findViewById(R.id.id_tablayout_annee);
         tabLayout.getTabAt(0).setText("Mois en cours");

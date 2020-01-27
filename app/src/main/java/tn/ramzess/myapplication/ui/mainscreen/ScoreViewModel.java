@@ -27,28 +27,7 @@ public class ScoreViewModel extends ViewModel {
     ArrayList<String> labels = new ArrayList<String>();
     Score score;// = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);;
 
-    public ScoreViewModel(int typeScore) {
-        this.typeScore = typeScore;
-        Database database = new Database();
-        SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
-        Date dateDeb= new Date();
-        Date dateFin = new Date();
-        try {
-            dateDeb = sdf.parse("01/01/2019");
-            dateFin = sdf.parse("01/12/2019");
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
-
-        Score score;// = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);
-        score = database.getScore(new Chauffeur(1, "Bond", "James"),dateDeb,dateFin,typeScore);
-        if(score != null) {
-            entries = score.getEntries();
-            dataset = new LineDataSet(entries, "# de Scores");
-            labels = score.getLabels();
-            System.out.println("Score retrieved form database");
-        }
+    public ScoreViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is score annuel fragment");
     }
@@ -67,5 +46,30 @@ public class ScoreViewModel extends ViewModel {
 
     public ArrayList<Entry> getEntries() {
         return entries;
+    }
+
+    public void updateData(int typeScore)
+    {
+        this.typeScore = typeScore;
+        Database database = new Database();
+        SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
+        Date dateDeb= new Date();
+        Date dateFin = new Date();
+        try {
+            dateDeb = sdf.parse("01/01/2019");
+            dateFin = sdf.parse("31/12/2019");
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        Score score;// = new Score(Score.EST_SCORE_MENSUEL,Score.PERIODE_EN_COURS_OU_X_DERNIERS_SOUS_PERIODE);
+        score = database.getScore(new Chauffeur(1, "Bond", "James"),dateDeb,dateFin,typeScore);
+        if(score != null) {
+            entries = score.getEntries();
+            dataset = new LineDataSet(entries, "# de Scores");
+            labels = score.getLabels();
+            System.out.println("Score retrieved form database");
+        }
     }
 }
