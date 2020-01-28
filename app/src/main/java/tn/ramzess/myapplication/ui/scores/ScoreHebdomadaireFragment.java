@@ -22,8 +22,8 @@ public class ScoreHebdomadaireFragment extends Fragment{
 /*        Date dayFirst = TeleFleetUtils.getFirstDayOfWeek(new Date());
         Date dayLast = TeleFleetUtils.getLastDayOfWeek(new Date());
 */
-        Date dayFirst = ((MainActivity)getActivity()).getDateDebutScore();
-        Date dayLast =  ((MainActivity)getActivity()).getDateFinScore();
+        Date dayFirst = ((MainActivity)getActivity()).getDateDebutScoreHebdomadaire();
+        Date dayLast =  ((MainActivity)getActivity()).getDateFinScoreHebdomadaire();
         ScoreFragment scoreFragment = (ScoreFragment)getChildFragmentManager().findFragmentById(R.id.fragmenthebdomadaire);
         scoreFragment.getScoreViewModel().updateDataWithDate(dayFirst,dayLast);
 

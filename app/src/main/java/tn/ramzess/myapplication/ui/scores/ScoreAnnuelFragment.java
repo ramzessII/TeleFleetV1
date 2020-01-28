@@ -22,8 +22,8 @@ public class ScoreAnnuelFragment extends Fragment {
         inflater.inflate(R.layout.score_hebdomadare_fragment, container, false);
         /*Date dayFirst = TeleFleetUtils.getFirstDayOfYear(new Date());
         Date dayLast = TeleFleetUtils.getLastDayOfYear(new Date());*/
-        Date dayFirst = ((MainActivity)getActivity()).getDateDebutScore();
-        Date dayLast =  ((MainActivity)getActivity()).getDateFinScore();
+        Date dayFirst = ((MainActivity)getActivity()).getDateDebutScoreAnnuel();
+        Date dayLast =  ((MainActivity)getActivity()).getDateFinScoreAnnuel();
         ScoreFragment scoreFragment = (ScoreFragment)getChildFragmentManager().findFragmentById(R.id.fragmentannuel);
         scoreFragment.getScoreViewModel().updateDataWithDate(dayFirst,dayLast);
         //scoreViewModel = new ScoreViewModel(root, Score.SCORE_ANNUEL,Score.SCORE_ECO_CONDUIE,dayFirst,dayLast);

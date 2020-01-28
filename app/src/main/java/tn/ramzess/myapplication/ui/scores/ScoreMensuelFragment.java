@@ -23,8 +23,8 @@ public class ScoreMensuelFragment extends Fragment {
  /*       Date dayFirst = TeleFleetUtils.getFirstDayOfMonth(new Date());
         Date dayLast = TeleFleetUtils.getLastDayOfMonth(new Date());
 */
-        Date dayFirst = ((MainActivity)getActivity()).getDateDebutScore();
-        Date dayLast =  ((MainActivity)getActivity()).getDateFinScore();
+        Date dayFirst = ((MainActivity)getActivity()).getDateDebutScoreMensuel();
+        Date dayLast =  ((MainActivity)getActivity()).getDateFinScoreMensuel();
         ScoreFragment scoreFragment = (ScoreFragment)getChildFragmentManager().findFragmentById(R.id.fragmentmensuel);
         scoreFragment.getScoreViewModel().updateDataWithDate(dayFirst,dayLast);
 /*

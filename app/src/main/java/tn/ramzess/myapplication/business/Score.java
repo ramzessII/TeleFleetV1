@@ -68,6 +68,7 @@ public class Score {
                     labels.add(dateDebut);
                     for(int i=1;i<12;i++) {
                         cal.add(Calendar.MONTH, 1);
+                        Date d = cal.getTime();
                         labels.add(cal.getTime());
                     }
  /*                   labels.add(sdf.parse("01/03/2019"));
@@ -88,7 +89,7 @@ public class Score {
                 case SCORE_MENSUEL:
                     cal.setTime(dateDebut);
                     labels.add(dateDebut);
-                    for(int i=1;i<4;i++) {
+                    for(int i=1;i<5;i++) {
                         cal.add(Calendar.WEEK_OF_MONTH, 1);
                         labels.add(cal.getTime());
                     }
@@ -280,7 +281,7 @@ public class Score {
 
     public ArrayList<String> getLabels() {
         ArrayList<String> strlabels = new ArrayList<String>();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
         Date d;
         String s;
         for(int i =0;i<labels.size();i++)

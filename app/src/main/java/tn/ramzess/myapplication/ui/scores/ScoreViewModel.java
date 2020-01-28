@@ -37,7 +37,7 @@ public class ScoreViewModel extends ViewModel {
 
 
 
-    public ScoreViewModel(View rootView, int typePeriodeScore, int typeSecurite, Date ddeb, Date dfin) {
+    public ScoreViewModel(View rootView,  int typePeriodeScore, int typeSecurite, Date ddeb, Date dfin) {
         this.typePeriodeScore = typePeriodeScore;
         this.typeSecurite = typeSecurite;
         this.rootView = rootView;
@@ -53,7 +53,12 @@ public class ScoreViewModel extends ViewModel {
             this.typePeriodeScore = typePeriodeScore;
 
             TabLayout tabLayout = rootView.findViewById(R.id.id_tablayout_type_periode);
-            switch (typePeriodeScore)
+            SimpleDateFormat spf = new SimpleDateFormat("dd/MM/yyyy");
+            String strDeb = spf.format(ddeb);
+            String strFin = spf.format(dfin);
+            tabLayout.getTabAt(0).setText("Du " + strDeb + "\nAu " + strFin);
+
+           /* switch (typePeriodeScore)
             {
                 case Score.SCORE_ANNUEL:
                     tabLayout.getTabAt(0).setText("Année en cours");
@@ -69,7 +74,7 @@ public class ScoreViewModel extends ViewModel {
                     break;
                 case Score.SCORE_JOURNALIER:
                     break;
-            }
+            }*/
 
 
         }
@@ -98,6 +103,12 @@ public class ScoreViewModel extends ViewModel {
             this.typePeriodeScore = typePeriodeScore;
 
             TabLayout tabLayout = rootView.findViewById(R.id.id_tablayout_type_periode);
+
+            SimpleDateFormat spf = new SimpleDateFormat("dd/MM/yyyy");
+            String strDeb = spf.format(ddeb);
+            String strFin = spf.format(dfin);
+            tabLayout.getTabAt(0).setText("From " + strDeb + "\nTo " + strFin);
+            /*
             switch (typePeriodeScore)
             {
                 case Score.SCORE_ANNUEL:
@@ -114,7 +125,7 @@ public class ScoreViewModel extends ViewModel {
                     break;
                 case Score.SCORE_JOURNALIER:
                     break;
-            }
+            }*/
 
 
         }

@@ -61,8 +61,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     ArrayList<String> chartLabels ;
     BarDataSet barDataSet ;
     BarData chartDatas;
-    Date dateDebutScore;
-    Date dateFinScore;
+    Date dateDebutScoreAnnuel;
+    Date dateFinScoreAnnuel;
+    Date dateDebutScoreMensuel;
+    Date dateFinScoreMensuel;
+    Date dateDebutScoreHebdomadaire;
+    Date dateFinScoreHebdomadaire;
+    Date dateDynamiqueDebutScore;
+    Date dateDynamiqueFinScore;
+
+
 
 
 
@@ -89,8 +97,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         NavigationUI.setupWithNavController(navigationView, navController);
 
         drawer.setOnTouchListener(this);
-        dateDebutScore = TeleFleetUtils.getFirstDayOfYear(new Date());
-        dateFinScore = TeleFleetUtils.getLastDayOfYear(new Date());
+        dateDebutScoreAnnuel = TeleFleetUtils.getFirstDayOfYear(new Date());
+        dateFinScoreAnnuel = TeleFleetUtils.getLastDayOfYear(new Date());
+        dateDebutScoreMensuel = TeleFleetUtils.getFirstDayOfMonth(new Date());
+        dateFinScoreMensuel = TeleFleetUtils.getLastDayOfMonth(new Date());
+        dateDebutScoreHebdomadaire = TeleFleetUtils.getFirstDayOfWeek(new Date());
+        dateFinScoreHebdomadaire = TeleFleetUtils.getLastDayOfWeek(new Date());
+        Date dateDynamiqueDebutScore = new Date();
+        Date getDateDynamiqueFinScore = new Date();
     }
 
     @Override
@@ -277,7 +291,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     public boolean onScoreLeftToRighSwipeWithDate(Date dateDeb,Date dateFin)
     {
-        System.out.println("onLeftToRighSwipe");
         int idCurrentDestination = navController.getCurrentDestination().getId();
         int idNextDestination;
         switch (idCurrentDestination) {
@@ -306,14 +319,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         int idCurrentDestination = navController.getCurrentDestination().getId();
         switch (idCurrentDestination) {
             case R.id.nav_score_annuel:
-                dateDebutScore = TeleFleetUtils.getFirstDayOfMonth(new Date());
-                dateFinScore = TeleFleetUtils.getLastDayOfMonth(new Date());
-                onScoreLeftToRighSwipeWithDate(dateDebutScore,dateFinScore);
+                onScoreLeftToRighSwipeWithDate(dateDebutScoreMensuel,dateFinScoreMensuel);
                 break;
             case R.id.nav_score_mensuel:
-                dateDebutScore = TeleFleetUtils.getFirstDayOfWeek(new Date());
-                dateFinScore = TeleFleetUtils.getLastDayOfWeek(new Date());
-                onScoreLeftToRighSwipeWithDate(dateDebutScore,dateFinScore);
+                onScoreLeftToRighSwipeWithDate(dateDebutScoreHebdomadaire,dateFinScoreHebdomadaire);
                 break;
             case R.id.nav_score_hebdomadaire:
                 break;
@@ -361,26 +370,47 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         return true;
     }
 
-    public void onChartValueSelected(ScoreFragment callerFragment, Date dateDeb,Date dateFin)
+    public void onChartValueSelected(ScoreFragment callerFragment,  Date dateDeb,Date dateFin)
     {
-        setDateDebutScore(dateDeb);
-        setDateFinScore(dateFin);
+        switch (typePeriodeScore)
+        {
+            case Score.SCORE_ANNUEL:
+                break;
+            case Score.SCORE_MENSUEL:
+                break;
+            case Score.SCORE_HEBDOMADAIRE:
+
+        }
+        dateDynamiqueDebutScore = dateDeb;
+        dateDynamiqueFinScore = dateFin;
         onScoreLeftToRighSwipeWithDate(dateDeb,dateFin);
     }
 
-    public Date getDateDebutScore() {
-        return dateDebutScore;
+    public Date getDateDebutScoreAnnuel() {
+        return dateDebutScoreAnnuel;
     }
 
-    public void setDateDebutScore(Date dateDebutScore) {
-        this.dateDebutScore = dateDebutScore;
+    public Date getDateFinScoreAnnuel() {
+        return dateFinScoreAnnuel;
     }
 
-    public Date getDateFinScore() {
-        return dateFinScore;
+
+    public Date getDateDebutScoreMensuel() {
+        return dateDebutScoreMensuel;
     }
 
-    public void setDateFinScore(Date dateFinScore) {
-        this.dateFinScore = dateFinScore;
+
+    public Date getDateFinScoreMensuel() {
+        return dateFinScoreMensuel;
     }
+
+    public Date getDateDebutScoreHebdomadaire() {
+        return dateDebutScoreHebdomadaire;
+    }
+
+
+    public Date getDateFinScoreHebdomadaire() {
+        return dateFinScoreHebdomadaire;
+    }
+
 }

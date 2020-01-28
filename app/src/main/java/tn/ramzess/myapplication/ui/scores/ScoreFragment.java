@@ -44,17 +44,23 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
         View root = inflater.inflate(R.layout.score_fragement, container, false);
         int idfragmet = this.getId();
         Date now = new Date();
-        Date ddeb = ((MainActivity) getActivity()).getDateDebutScore();
-        Date dfin = ((MainActivity) getActivity()).getDateFinScore();
+        Date ddeb = new Date();
+        Date dfin = new Date();
         switch (idfragmet)
         {
             case R.id.fragmentannuel:
+                ddeb = ((MainActivity) getActivity()).getDateDebutScoreAnnuel();
+                dfin = ((MainActivity) getActivity()).getDateFinScoreAnnuel();
                 scoreViewModel = new ScoreViewModel(root,Score.SCORE_ANNUEL,Score.SCORE_ECO_CONDUIE,ddeb,dfin);
                 break;
             case R.id.fragmentmensuel:
+                ddeb = ((MainActivity) getActivity()).getDateDebutScoreMensuel();
+                dfin = ((MainActivity) getActivity()).getDateFinScoreMensuel();
                 scoreViewModel = new ScoreViewModel(root,Score.SCORE_MENSUEL,Score.SCORE_ECO_CONDUIE,ddeb,dfin);
                 break;
             case R.id.fragmenthebdomadaire:
+                ddeb = ((MainActivity) getActivity()).getDateDebutScoreHebdomadaire();
+                dfin = ((MainActivity) getActivity()).getDateFinScoreHebdomadaire();
                 scoreViewModel = new ScoreViewModel(root,Score.SCORE_HEBDOMADAIRE,Score.SCORE_ECO_CONDUIE,ddeb,dfin);
                 break;
             case R.id.fragmentjournalier:
@@ -88,7 +94,7 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
         try {
             String selectedPeriod = labels.get(entry.getXIndex());
-            SimpleDateFormat spf = new SimpleDateFormat("y/M/yyyy");
+            SimpleDateFormat spf = new SimpleDateFormat("d/M/yyyy");
             Date dateDeb = spf.parse(selectedPeriod);
             Calendar cal = Calendar.getInstance();
             cal.setTime(dateDeb);
@@ -97,21 +103,26 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
             switch (idfragmet)
             {
                 case R.id.fragmentannuel:
+                    System.out.println("Selected period fragment annuel="+selectedPeriod.toString());
                     cal.add(Calendar.MONTH, 1);
                     dateFin = cal.getTime();
                     break;
                 case R.id.fragmentmensuel:
+                    System.out.println("Selected period fragment mensuel="+selectedPeriod.toString());
                     cal.add(Calendar.WEEK_OF_MONTH, 1);
                     dateFin = cal.getTime();
                     break;
                 case R.id.fragmenthebdomadaire:
+                    System.out.println("Selected period fragment hebdomadaire="+selectedPeriod.toString());
                     cal.add(Calendar.DAY_OF_WEEK, 1);
                     dateFin = cal.getTime();
                     break;
                 case R.id.fragmentjournalier:
                     break;
+                    default:
+                        System.out.println("Selected period default="+selectedPeriod.toString());
             }
-            System.out.println("Selected period="+selectedPeriod.toString());
+
             ((MainActivity)getActivity()).onChartValueSelected(this,dateDeb,dateFin);
 
 
