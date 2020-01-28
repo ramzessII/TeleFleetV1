@@ -5,6 +5,7 @@ import com.github.mikephil.charting.data.Entry;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Score {
@@ -60,12 +61,16 @@ public class Score {
 
         try {
 
-
+            Calendar cal = Calendar.getInstance();
             switch (typePeriodeScore) {
                 case SCORE_ANNUEL:
-                    labels.add(sdf.parse("01/01/2019"));
-                    labels.add(sdf.parse("01/02/2019"));
-                    labels.add(sdf.parse("01/03/2019"));
+                    cal.setTime(dateDebut);
+                    labels.add(dateDebut);
+                    for(int i=1;i<12;i++) {
+                        cal.add(Calendar.MONTH, 1);
+                        labels.add(cal.getTime());
+                    }
+ /*                   labels.add(sdf.parse("01/03/2019"));
                     labels.add(sdf.parse("01/04/2019"));
                     labels.add(sdf.parse("01/05/2019"));
                     labels.add(sdf.parse("01/06/2019"));
@@ -74,14 +79,20 @@ public class Score {
                     labels.add(sdf.parse("01/09/2019"));
                     labels.add(sdf.parse("01/10/2019"));
                     labels.add(sdf.parse("01/11/2019"));
-                    labels.add(sdf.parse("01/12/2019"));
+                    labels.add(sdf.parse("01/12/2019"));*/
                     for (int i = 0; i < labels.size(); i++) {
                         entries.add(new Entry(0, i));
                     }
 
                     break;
                 case SCORE_MENSUEL:
-                    labels.add(sdf.parse("01/01/2019"));
+                    cal.setTime(dateDebut);
+                    labels.add(dateDebut);
+                    for(int i=1;i<4;i++) {
+                        cal.add(Calendar.WEEK_OF_MONTH, 1);
+                        labels.add(cal.getTime());
+                    }
+/*                    labels.add(sdf.parse("01/01/2019"));
                     labels.add(sdf.parse("02/01/2019"));
                     labels.add(sdf.parse("03/01/2019"));
                     labels.add(sdf.parse("04/01/2019"));
@@ -111,19 +122,26 @@ public class Score {
                     labels.add(sdf.parse("28/01/2019"));
                     labels.add(sdf.parse("29/01/2019"));
                     labels.add(sdf.parse("30/01/2019"));
-                    labels.add(sdf.parse("31/01/2019"));
+                    labels.add(sdf.parse("31/01/2019"));*/
                     for (int i = 0; i < labels.size(); i++) {
                         entries.add(new Entry((float)Math.random(), i));
                     }
                     break;
                 case SCORE_HEBDOMADAIRE:
+                    cal.setTime(dateDebut);
+                    labels.add(dateDebut);
+                    for(int i=1;i<7;i++) {
+                        cal.add(Calendar.DAY_OF_WEEK, 1);
+                        labels.add(cal.getTime());
+                    }
+                    /*
                     labels.add(sdf.parse("01/01/2019"));
                     labels.add(sdf.parse("02/01/2019"));
                     labels.add(sdf.parse("03/01/2019"));
                     labels.add(sdf.parse("04/01/2019"));
                     labels.add(sdf.parse("05/01/2019"));
                     labels.add(sdf.parse("06/01/2019"));
-                    labels.add(sdf.parse("07/01/2019"));
+                    labels.add(sdf.parse("07/01/2019"));*/
                     for (int i = 0; i < labels.size(); i++) {
                         entries.add(new Entry((float)Math.random(), i));
                     }

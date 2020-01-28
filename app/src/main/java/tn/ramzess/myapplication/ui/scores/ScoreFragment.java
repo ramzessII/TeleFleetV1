@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -16,7 +15,6 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,23 +40,24 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        scoreViewModel =
-                ViewModelProviders.of(this).get(ScoreViewModel.class);
+
         View root = inflater.inflate(R.layout.score_fragement, container, false);
         int idfragmet = this.getId();
+        Date now = new Date();
+        Date ddeb = ((MainActivity) getActivity()).getDateDebutScore();
+        Date dfin = ((MainActivity) getActivity()).getDateFinScore();
         switch (idfragmet)
         {
             case R.id.fragmentannuel:
-                scoreViewModel.updateData(Score.SCORE_ANNUEL,Score.SCORE_ECO_CONDUIE);
+                scoreViewModel = new ScoreViewModel(root,Score.SCORE_ANNUEL,Score.SCORE_ECO_CONDUIE,ddeb,dfin);
                 break;
             case R.id.fragmentmensuel:
-                scoreViewModel.updateData(Score.SCORE_MENSUEL,Score.SCORE_ECO_CONDUIE);
+                scoreViewModel = new ScoreViewModel(root,Score.SCORE_MENSUEL,Score.SCORE_ECO_CONDUIE,ddeb,dfin);
                 break;
             case R.id.fragmenthebdomadaire:
-                scoreViewModel.updateData(Score.SCORE_HEBDOMADAIRE,Score.SCORE_ECO_CONDUIE);
+                scoreViewModel = new ScoreViewModel(root,Score.SCORE_HEBDOMADAIRE,Score.SCORE_ECO_CONDUIE,ddeb,dfin);
                 break;
             case R.id.fragmentjournalier:
-                scoreViewModel.updateData(Score.SCORE_JOURNALIER,Score.SCORE_ECO_CONDUIE);
                 break;
         }
 
@@ -66,6 +65,7 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
         dataset = scoreViewModel.getDataset();
         labels = scoreViewModel.getLabels();
         data = new LineData(labels, dataset);
+
         chart = root.findViewById(R.id.chart1);
         chart.setData(data);
         chart.setDescription("# est le score que vous avez éffectué");
@@ -79,38 +79,10 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
 
     }
 
-    public void initialise(int typePeriodeScore, View calledby)
-    {
-        if(typePeriodeScore == Score.SCORE_ANNUEL ||
-                typePeriodeScore == Score.SCORE_MENSUEL ||
-                typePeriodeScore == Score.SCORE_HEBDOMADAIRE||
-                typePeriodeScore == Score.SCORE_JOURNALIER)
-        {
-            this.typePeriodeScore = typePeriodeScore;
-
-            TabLayout tabLayout = calledby.findViewById(R.id.id_tablayout_type_periode);
-            switch (typePeriodeScore)
-            {
-                case Score.SCORE_ANNUEL:
-                    tabLayout.getTabAt(0).setText("Année en cours");
-                    tabLayout.getTabAt(1).setText("12 derniers mois");
-                    break;
-                case Score.SCORE_MENSUEL:
-                    tabLayout.getTabAt(0).setText("Mois en cours");
-                    tabLayout.getTabAt(1).setText("30 derniers jours");
-                    break;
-                case Score.SCORE_HEBDOMADAIRE:
-                    tabLayout.getTabAt(0).setText("Semaine en cours");
-                    tabLayout.getTabAt(1).setText("7 derniers jours");
-                    break;
-                case Score.SCORE_JOURNALIER:
-                    break;
-            }
-
-
-        }
-
+    public ScoreViewModel getScoreViewModel() {
+        return scoreViewModel;
     }
+
     @Override
     public void onValueSelected(Entry entry, int dataSetIndex, Highlight h) {
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
@@ -129,11 +101,11 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
                     dateFin = cal.getTime();
                     break;
                 case R.id.fragmentmensuel:
-                    cal.add(Calendar.DAY_OF_MONTH, 1);
+                    cal.add(Calendar.WEEK_OF_MONTH, 1);
                     dateFin = cal.getTime();
                     break;
                 case R.id.fragmenthebdomadaire:
-                    cal.add(Calendar.DAY_OF_MONTH, 1);
+                    cal.add(Calendar.DAY_OF_WEEK, 1);
                     dateFin = cal.getTime();
                     break;
                 case R.id.fragmentjournalier:
@@ -197,7 +169,5 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
 
         }
     }
-
-
 
 }

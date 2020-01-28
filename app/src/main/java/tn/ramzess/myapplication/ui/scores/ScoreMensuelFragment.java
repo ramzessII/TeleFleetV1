@@ -8,23 +8,36 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import java.util.Date;
+
+import tn.ramzess.myapplication.MainActivity;
 import tn.ramzess.myapplication.R;
-import tn.ramzess.myapplication.business.Score;
 
 public class ScoreMensuelFragment extends Fragment {
     private ScoreViewModel scoreViewModel;
-    @Override
-    public void onResume() {
-        super.onResume();
-        scoreViewModel.updateData(Score.SCORE_MENSUEL,Score.SCORE_ECO_CONDUIE);
-    }
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        scoreViewModel = new ScoreViewModel();
-        scoreViewModel.updateData(Score.SCORE_MENSUEL,Score.SCORE_ECO_CONDUIE);
         View root = inflater.inflate(R.layout.score_mensuel_fragment, container, false);
+ /*       Date dayFirst = TeleFleetUtils.getFirstDayOfMonth(new Date());
+        Date dayLast = TeleFleetUtils.getLastDayOfMonth(new Date());
+*/
+        Date dayFirst = ((MainActivity)getActivity()).getDateDebutScore();
+        Date dayLast =  ((MainActivity)getActivity()).getDateFinScore();
         ScoreFragment scoreFragment = (ScoreFragment)getChildFragmentManager().findFragmentById(R.id.fragmentmensuel);
-        scoreFragment.initialise(Score.SCORE_MENSUEL,root);
+        scoreFragment.getScoreViewModel().updateDataWithDate(dayFirst,dayLast);
+/*
+        scoreViewModel.updateData(Score.SCORE_MENSUEL,Score.SCORE_ECO_CONDUIE,dayFirst,dayLast);
+        ScoreFragment scoreFragment = (ScoreFragment)getChildFragmentManager().findFragmentById(R.id.fragmentmensuel);
+        scoreFragment.initialise(Score.SCORE_MENSUEL,root);*/
+
+
         return root;
+    }
+
+    public void updateDataWithDate(Date dateDeb,Date dateFin)
+    {
+        scoreViewModel.updateDataWithDate(dateDeb,dateFin);
     }
 }

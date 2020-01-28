@@ -33,6 +33,7 @@ import java.util.Date;
 
 import tn.ramzess.myapplication.business.Score;
 import tn.ramzess.myapplication.ui.scores.ScoreFragment;
+import tn.ramzess.myapplication.util.TeleFleetUtils;
 
 public class MainActivity extends AppCompatActivity implements LocationListener, View.OnTouchListener  {
     private LocationManager locationManager;
@@ -60,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     ArrayList<String> chartLabels ;
     BarDataSet barDataSet ;
     BarData chartDatas;
+    Date dateDebutScore;
+    Date dateFinScore;
+
 
 
     @Override
@@ -83,8 +87,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        drawer.setOnTouchListener(this);
 
+        drawer.setOnTouchListener(this);
+        dateDebutScore = TeleFleetUtils.getFirstDayOfYear(new Date());
+        dateFinScore = TeleFleetUtils.getLastDayOfYear(new Date());
     }
 
     @Override
@@ -249,19 +255,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                 {
                     if (tracetX > 100) {
 
-                        onLeftToRighSwipe();
+                        onScoreLeftToRighSwipe();
                         return true;
                     } else if (tracetX < -100) {
-                        onRighToLeftSwipe();
+                        onScoreRighToLeftSwipe();
                         return true;
                     }
                 } else // verticla swipe
                 {
                     if (tracetY > 100) {
-                        onBottomToTopSwipe();
+                        onScoreBottomToTopSwipe();
                         return true;
                     } else if (tracetY < -100) {
-                        onTopToBottomSwipe();
+                        onScoreTopToBottomSwipe();
                         return true;
                     }
                 }
@@ -269,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         return true;
     }
 
-    public boolean onLeftToRighSwipe()
+    public boolean onScoreLeftToRighSwipeWithDate(Date dateDeb,Date dateFin)
     {
         System.out.println("onLeftToRighSwipe");
         int idCurrentDestination = navController.getCurrentDestination().getId();
@@ -294,7 +300,31 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         return true;
     }
 
-    public boolean onRighToLeftSwipe()
+    public boolean onScoreLeftToRighSwipe()
+    {
+        System.out.println("onLeftToRighSwipe");
+        int idCurrentDestination = navController.getCurrentDestination().getId();
+        switch (idCurrentDestination) {
+            case R.id.nav_score_annuel:
+                dateDebutScore = TeleFleetUtils.getFirstDayOfMonth(new Date());
+                dateFinScore = TeleFleetUtils.getLastDayOfMonth(new Date());
+                onScoreLeftToRighSwipeWithDate(dateDebutScore,dateFinScore);
+                break;
+            case R.id.nav_score_mensuel:
+                dateDebutScore = TeleFleetUtils.getFirstDayOfWeek(new Date());
+                dateFinScore = TeleFleetUtils.getLastDayOfWeek(new Date());
+                onScoreLeftToRighSwipeWithDate(dateDebutScore,dateFinScore);
+                break;
+            case R.id.nav_score_hebdomadaire:
+                break;
+            default:
+                break;
+        }
+        drawer.refreshDrawableState();
+        return true;
+    }
+
+    public boolean onScoreRighToLeftSwipe()
     {
         System.out.println("onRighToLeftSwipe");
         int idCurrentDestination = navController.getCurrentDestination().getId();
@@ -319,13 +349,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         return true;
     }
 
-    public boolean onTopToBottomSwipe()
+    public boolean onScoreTopToBottomSwipe()
     {
         System.out.println("onTopToBottomSwipe");
         return true;
     }
 
-    public boolean onBottomToTopSwipe()
+    public boolean onScoreBottomToTopSwipe()
     {
         System.out.println("onBottomToTop Swipe");
         return true;
@@ -333,24 +363,24 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     public void onChartValueSelected(ScoreFragment callerFragment, Date dateDeb,Date dateFin)
     {
-        int idNextDestination;
-        switch (callerFragment.getId())
-        {
-            case R.id.fragmentannuel:
-                idNextDestination = R.id.nav_score_mensuel;
-                navController.navigate(idNextDestination);
-                break;
-            case R.id.fragmentmensuel:
-                idNextDestination = R.id.nav_score_hebdomadaire;
-                navController.navigate(idNextDestination);
-                break;
-            case R.id.fragmenthebdomadaire:
-                break;
-            case R.id.fragmentjournalier:
-                break;
-        }
-        drawer.refreshDrawableState();
+        setDateDebutScore(dateDeb);
+        setDateFinScore(dateFin);
+        onScoreLeftToRighSwipeWithDate(dateDeb,dateFin);
+    }
+
+    public Date getDateDebutScore() {
+        return dateDebutScore;
+    }
+
+    public void setDateDebutScore(Date dateDebutScore) {
+        this.dateDebutScore = dateDebutScore;
+    }
+
+    public Date getDateFinScore() {
+        return dateFinScore;
+    }
+
+    public void setDateFinScore(Date dateFinScore) {
+        this.dateFinScore = dateFinScore;
     }
 }
-
-
