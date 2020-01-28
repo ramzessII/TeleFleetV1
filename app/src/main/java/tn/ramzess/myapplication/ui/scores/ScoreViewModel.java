@@ -19,6 +19,7 @@ import tn.ramzess.myapplication.R;
 import tn.ramzess.myapplication.business.Chauffeur;
 import tn.ramzess.myapplication.business.Score;
 import tn.ramzess.myapplication.dao.Database;
+import tn.ramzess.myapplication.util.TeleFleetUtils;
 
 public class ScoreViewModel extends ViewModel {
 
@@ -51,14 +52,14 @@ public class ScoreViewModel extends ViewModel {
                 typePeriodeScore == Score.SCORE_JOURNALIER)
         {
             this.typePeriodeScore = typePeriodeScore;
-
+/*
             TabLayout tabLayout = rootView.findViewById(R.id.id_tablayout_type_periode);
             SimpleDateFormat spf = new SimpleDateFormat("dd/MM/yyyy");
             String strDeb = spf.format(ddeb);
             String strFin = spf.format(dfin);
             tabLayout.getTabAt(0).setText("Du " + strDeb + "\nAu " + strFin);
 
-           /* switch (typePeriodeScore)
+            switch (typePeriodeScore)
             {
                 case Score.SCORE_ANNUEL:
                     tabLayout.getTabAt(0).setText("Année en cours");
@@ -107,25 +108,34 @@ public class ScoreViewModel extends ViewModel {
             SimpleDateFormat spf = new SimpleDateFormat("dd/MM/yyyy");
             String strDeb = spf.format(ddeb);
             String strFin = spf.format(dfin);
-            tabLayout.getTabAt(0).setText("From " + strDeb + "\nTo " + strFin);
-            /*
+            tabLayout.getTabAt(0).setText("Du " + strDeb + "\nAu " + strFin);
+
+            Date now = new Date();
+            Date later = new Date();
+
             switch (typePeriodeScore)
             {
                 case Score.SCORE_ANNUEL:
-                    tabLayout.getTabAt(0).setText("Année en cours");
-                    tabLayout.getTabAt(1).setText("12 derniers mois");
+                    later = TeleFleetUtils.getOneYearLater(now);
+                    strDeb = spf.format(later);
+                    strFin = spf.format(now);
+                    tabLayout.getTabAt(1).setText("Du " + strDeb + "\nAu " + strFin);
                     break;
                 case Score.SCORE_MENSUEL:
-                    tabLayout.getTabAt(0).setText("Mois en cours");
-                    tabLayout.getTabAt(1).setText("30 derniers jours");
+                    later = TeleFleetUtils.getOneMonthLater(now);
+                    strDeb = spf.format(later);
+                    strFin = spf.format(now);
+                    tabLayout.getTabAt(1).setText("Du " + strDeb + "\nAu " + strFin);
                     break;
                 case Score.SCORE_HEBDOMADAIRE:
-                    tabLayout.getTabAt(0).setText("Semaine en cours");
-                    tabLayout.getTabAt(1).setText("7 derniers jours");
+                    later = TeleFleetUtils.getOneWeekLater(now);
+                    strDeb = spf.format(later);
+                    strFin = spf.format(now);
+                    tabLayout.getTabAt(1).setText("Du " + strDeb + "\nAu " + strFin);
                     break;
                 case Score.SCORE_JOURNALIER:
                     break;
-            }*/
+            }
 
 
         }

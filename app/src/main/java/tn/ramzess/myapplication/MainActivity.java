@@ -22,22 +22,18 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import tn.ramzess.myapplication.business.Score;
 import tn.ramzess.myapplication.ui.scores.ScoreFragment;
 import tn.ramzess.myapplication.util.TeleFleetUtils;
 
-public class MainActivity extends AppCompatActivity implements LocationListener, View.OnTouchListener  {
+public class MainActivity extends AppCompatActivity implements LocationListener, View.OnTouchListener {
     private LocationManager locationManager;
-    private static int PERMISSION_CALL_ID=1234;
+    private static int PERMISSION_CALL_ID = 1234;
     private boolean modePrivateEnable = false;
     private boolean userIsIdentified = false;
     private AppBarConfiguration mAppBarConfiguration;
@@ -56,11 +52,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     private int typePeriodeScore;
     private boolean periodeEnCoursOuXDernieresSousPeriode;
 
-    BarChart chart ;
-    ArrayList<BarEntry> chartValues ;
-    ArrayList<String> chartLabels ;
-    BarDataSet barDataSet ;
-    BarData chartDatas;
     Date dateDebutScoreAnnuel;
     Date dateFinScoreAnnuel;
     Date dateDebutScoreMensuel;
@@ -69,9 +60,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     Date dateFinScoreHebdomadaire;
     Date dateDynamiqueDebutScore;
     Date dateDynamiqueFinScore;
-
-
-
 
 
     @Override
@@ -95,14 +83,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
+        TabLayout tabLayout = findViewById(R.id.id_tablayout_type_periode);
         drawer.setOnTouchListener(this);
-        dateDebutScoreAnnuel = TeleFleetUtils.getFirstDayOfYear(new Date());
-        dateFinScoreAnnuel = TeleFleetUtils.getLastDayOfYear(new Date());
-        dateDebutScoreMensuel = TeleFleetUtils.getFirstDayOfMonth(new Date());
-        dateFinScoreMensuel = TeleFleetUtils.getLastDayOfMonth(new Date());
-        dateDebutScoreHebdomadaire = TeleFleetUtils.getFirstDayOfWeek(new Date());
-        dateFinScoreHebdomadaire = TeleFleetUtils.getLastDayOfWeek(new Date());
+
+
+
+
+
+
         Date dateDynamiqueDebutScore = new Date();
         Date getDateDynamiqueFinScore = new Date();
     }
@@ -117,8 +105,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     @Override
     protected void onPause() {
         super.onPause();
-        if(locationManager == null)
-        {
+        if (locationManager == null) {
             locationManager.removeUpdates(this);
         }
     }
@@ -142,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     public void onLocationChanged(Location location) {
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
-        Toast.makeText(this,"Location " + latitude+ "\n"+ longitude, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Location " + latitude + "\n" + longitude, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -154,10 +141,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        switch (itemId)
-        {
+        switch (itemId) {
             case R.id.item_private_mode:
                 modePrivateEnable = !modePrivateEnable;
                 item.setChecked(modePrivateEnable);
@@ -175,8 +161,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     }
 
 
-
-
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -184,113 +168,128 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                 || super.onSupportNavigateUp();
     }
 
-    public void onClickBtnSignIn(View view)
-    {
-        Toast.makeText(this, "onClickBtnSignIn", Toast.LENGTH_SHORT).show();
-    }
-
-    public void onClickBtnRegister(View view)
-    {
-        Toast.makeText(this, "onClickBtnRegister", Toast.LENGTH_SHORT).show();
-    }
-
-    public void onClickBtnLogin(View view)
-    {
-        Toast.makeText(this, "onClickBtnLogin", Toast.LENGTH_SHORT).show();
-    }
-    public void onClickBtnFacebook(View view)
-    {
-        Toast.makeText(this, "onClickBtnFacebook", Toast.LENGTH_SHORT).show();
-    }
-
-    public void onClickBtnGoogle(View view)
-    {
-        Toast.makeText(this, "onClickBtnGoogle", Toast.LENGTH_SHORT).show();
-    }
-
-    private void checkPermission()
-    {
+    private void checkPermission() {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
             }, PERMISSION_CALL_ID);
             return;
         }
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, this);
         }
-        if(locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER))
-        {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,10,this);
+        if (locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, this);
         }
-        if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
-        {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,10,this);
+        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, this);
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode==PERMISSION_CALL_ID)
-        {
+        if (requestCode == PERMISSION_CALL_ID) {
             checkPermission();
         }
     }
 
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        if(event.getAction()==MotionEvent.ACTION_DOWN)
-        {
-            oldTouchX = event.getX();
-            oldTouchY = event.getY();
-            if( oldTouchX < 50) {
-                System.out.println ("X="+oldTouchX+ " => Trop près du menu" + event.toString());
-                ignoreOnTouche = true;
-                return false;
-            }
+    public boolean onTouch(View view, MotionEvent event) {
+        int idView = view.getId();
+        switch (idView) {
+            case R.id.tab_item_periode1:
+                switch (typePeriodeScore) {
+                    case Score.SCORE_ANNUEL:
+                        // Calculer la nouvelle date de début et de fin
+                        dateDebutScoreAnnuel = TeleFleetUtils.getFirstDayOfYear(new Date());
+                        dateFinScoreAnnuel = TeleFleetUtils.getLastDayOfYear(new Date());
+                        break;
+                    case Score.SCORE_MENSUEL:
+                        dateDebutScoreMensuel = TeleFleetUtils.getFirstDayOfMonth(new Date());
+                        dateFinScoreMensuel = TeleFleetUtils.getLastDayOfMonth(new Date());
+                        break;
+                    case Score.SCORE_HEBDOMADAIRE:
+                        dateDebutScoreHebdomadaire = TeleFleetUtils.getFirstDayOfWeek(new Date());
+                        dateFinScoreHebdomadaire = TeleFleetUtils.getLastDayOfWeek(new Date());
+                        break;
+                    case Score.SCORE_JOURNALIER:
+                        break;
+                }
+                break;
 
-        }
-        if(event.getAction()==MotionEvent.ACTION_UP){
-                if (ignoreOnTouche) {
+            case R.id.tab_item_periode2:
+                switch (typePeriodeScore) {
+                    case Score.SCORE_ANNUEL:
+                        dateFinScoreAnnuel = new Date();
+                        dateDebutScoreAnnuel = TeleFleetUtils.getOneYearLater(new Date());
+                        break;
+                    case Score.SCORE_MENSUEL:
+                        dateFinScoreMensuel = new Date();
+                        dateDebutScoreMensuel = TeleFleetUtils.getOneMonthLater(new Date());
+                        break;
+                    case Score.SCORE_HEBDOMADAIRE:
+                        dateFinScoreHebdomadaire = new Date();
+                        dateDebutScoreHebdomadaire = TeleFleetUtils.getOneWeekLater(new Date());
+                        break;
+                    case Score.SCORE_JOURNALIER:
+                        break;
+                }
+                break;
+            case R.id.id_tablayout_type_score:
+                break;
+            default:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    oldTouchX = event.getX();
+                    oldTouchY = event.getY();
+                    if (oldTouchX < 50) {
+                        System.out.println("X=" + oldTouchX + " => Trop près du menu" + event.toString());
+                        ignoreOnTouche = true;
+                        return false;
+                    }
+
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (ignoreOnTouche) {
+                        ignoreOnTouche = false;
+                        System.out.println("Show context menu");
+                        return false; //Laisser l'evenement au menu sandwich
+                    }
                     ignoreOnTouche = false;
-                    System.out.println("Show context menu");
-                    return false; //Laisser l'evenement au menu sandwich
-                }
-                ignoreOnTouche = false;
-                float upX1 = event.getX();
-                float upY1 = event.getY();
+                    float upX1 = event.getX();
+                    float upY1 = event.getY();
 
-                float tracetX = oldTouchX - upX1;
-                float tracetY = oldTouchY - upY1;
+                    float tracetX = oldTouchX - upX1;
+                    float tracetY = oldTouchY - upY1;
 
-                if (Math.abs(tracetX) > Math.abs(tracetY)) // honrizontal
-                {
-                    if (tracetX > 100) {
+                    if (Math.abs(tracetX) > Math.abs(tracetY)) // honrizontal
+                    {
+                        if (tracetX > 100) {
 
-                        onScoreLeftToRighSwipe();
-                        return true;
-                    } else if (tracetX < -100) {
-                        onScoreRighToLeftSwipe();
-                        return true;
-                    }
-                } else // verticla swipe
-                {
-                    if (tracetY > 100) {
-                        onScoreBottomToTopSwipe();
-                        return true;
-                    } else if (tracetY < -100) {
-                        onScoreTopToBottomSwipe();
-                        return true;
+                            onScoreLeftToRighSwipe();
+                            return true;
+                        } else if (tracetX < -100) {
+                            onScoreRighToLeftSwipe();
+                            return true;
+                        }
+                    } else // verticla swipe
+                    {
+                        if (tracetY > 100) {
+                            onScoreBottomToTopSwipe();
+                            return true;
+                        } else if (tracetY < -100) {
+                            onScoreTopToBottomSwipe();
+                            return true;
+                        }
                     }
                 }
         }
+
         return true;
     }
 
-    public boolean onScoreLeftToRighSwipeWithDate(Date dateDeb,Date dateFin)
-    {
+    public boolean onScoreLeftToRighSwipeWithDate(Date dateDeb, Date dateFin) {
         int idCurrentDestination = navController.getCurrentDestination().getId();
         int idNextDestination;
         switch (idCurrentDestination) {
@@ -313,16 +312,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         return true;
     }
 
-    public boolean onScoreLeftToRighSwipe()
-    {
+    public boolean onScoreLeftToRighSwipe() {
         System.out.println("onLeftToRighSwipe");
         int idCurrentDestination = navController.getCurrentDestination().getId();
         switch (idCurrentDestination) {
             case R.id.nav_score_annuel:
-                onScoreLeftToRighSwipeWithDate(dateDebutScoreMensuel,dateFinScoreMensuel);
+                onScoreLeftToRighSwipeWithDate(getDateDebutScoreAnnuel(), getDateFinScoreAnnuel());
                 break;
             case R.id.nav_score_mensuel:
-                onScoreLeftToRighSwipeWithDate(dateDebutScoreHebdomadaire,dateFinScoreHebdomadaire);
+                onScoreLeftToRighSwipeWithDate(getDateDebutScoreHebdomadaire(), getDateFinScoreAnnuel());
                 break;
             case R.id.nav_score_hebdomadaire:
                 break;
@@ -333,8 +331,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         return true;
     }
 
-    public boolean onScoreRighToLeftSwipe()
-    {
+    public boolean onScoreRighToLeftSwipe() {
         System.out.println("onRighToLeftSwipe");
         int idCurrentDestination = navController.getCurrentDestination().getId();
         int idNextDestination;
@@ -358,59 +355,62 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         return true;
     }
 
-    public boolean onScoreTopToBottomSwipe()
-    {
+    public boolean onScoreTopToBottomSwipe() {
         System.out.println("onTopToBottomSwipe");
         return true;
     }
 
-    public boolean onScoreBottomToTopSwipe()
-    {
+    public boolean onScoreBottomToTopSwipe() {
         System.out.println("onBottomToTop Swipe");
         return true;
     }
 
-    public void onChartValueSelected(ScoreFragment callerFragment,  Date dateDeb,Date dateFin)
-    {
-        switch (typePeriodeScore)
-        {
+    public void onChartValueSelected(ScoreFragment callerFragment, Date dateDeb, Date dateFin) {
+        switch (typePeriodeScore) {
             case Score.SCORE_ANNUEL:
                 break;
             case Score.SCORE_MENSUEL:
                 break;
             case Score.SCORE_HEBDOMADAIRE:
-
+                break;
         }
         dateDynamiqueDebutScore = dateDeb;
         dateDynamiqueFinScore = dateFin;
-        onScoreLeftToRighSwipeWithDate(dateDeb,dateFin);
+        onScoreLeftToRighSwipeWithDate(dateDeb, dateFin);
     }
 
     public Date getDateDebutScoreAnnuel() {
+        dateDebutScoreAnnuel = TeleFleetUtils.getFirstDayOfYear(new Date());
         return dateDebutScoreAnnuel;
     }
 
     public Date getDateFinScoreAnnuel() {
+        dateFinScoreAnnuel = TeleFleetUtils.getLastDayOfYear(new Date());
         return dateFinScoreAnnuel;
     }
 
 
     public Date getDateDebutScoreMensuel() {
+        dateDebutScoreMensuel = TeleFleetUtils.getFirstDayOfMonth(new Date());
         return dateDebutScoreMensuel;
     }
 
 
     public Date getDateFinScoreMensuel() {
+        dateFinScoreMensuel = TeleFleetUtils.getLastDayOfMonth(new Date());
         return dateFinScoreMensuel;
     }
 
     public Date getDateDebutScoreHebdomadaire() {
+        dateDebutScoreHebdomadaire = TeleFleetUtils.getFirstDayOfWeek(new Date());
         return dateDebutScoreHebdomadaire;
     }
 
 
     public Date getDateFinScoreHebdomadaire() {
+        dateFinScoreHebdomadaire = TeleFleetUtils.getLastDayOfWeek(new Date());
         return dateFinScoreHebdomadaire;
     }
+
 
 }

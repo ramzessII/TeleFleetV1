@@ -25,7 +25,7 @@ import tn.ramzess.myapplication.MainActivity;
 import tn.ramzess.myapplication.R;
 import tn.ramzess.myapplication.business.Score;
 
-public class ScoreFragment extends Fragment implements OnChartValueSelectedListener, View.OnClickListener {
+public class ScoreFragment extends Fragment implements OnChartValueSelectedListener {
 
     private ScoreViewModel scoreViewModel;
     private BarChart barChart;
@@ -135,50 +135,6 @@ public class ScoreFragment extends Fragment implements OnChartValueSelectedListe
     @Override
     public void onNothingSelected() {
 
-    }
-
-    @Override
-    public void onClick(View view)
-    {
-        int idView = view.getId();
-        switch (idView)
-        {
-            case R.id.tab_item_periode1:
-                switch (typePeriodeScore) {
-                    case Score.SCORE_ANNUEL:
-                        // Calculer la nouvelle date de début et de fin
-                        break;
-                    case Score.SCORE_MENSUEL:
-                        // Calculer la nouvelle date de début et de fin
-                        break;
-                    case Score.SCORE_HEBDOMADAIRE:
-                        // Calculer la nouvelle date de début et de fin
-                        break;
-                    case Score.SCORE_JOURNALIER:
-                        break;
-                }
-            case R.id.tab_item_periode2: {
-                switch (typePeriodeScore) {
-                    case Score.SCORE_ANNUEL:
-                        // Calculer la nouvelle date de début et de fin
-                        break;
-                    case Score.SCORE_MENSUEL:
-                        // Calculer la nouvelle date de début et de fin
-                        break;
-                    case Score.SCORE_HEBDOMADAIRE:
-                        // Calculer la nouvelle date de début et de fin
-                        break;
-                    case Score.SCORE_JOURNALIER:
-                        break;
-                }
-            }
-            case R.id.id_tablayout_type_score:
-            {
-
-            }
-
-
-        }
     }
 
 }

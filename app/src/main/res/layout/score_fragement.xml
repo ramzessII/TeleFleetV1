@@ -10,6 +10,37 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Button" />
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Button" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/id_tablayout_type_periode"
             android:layout_width="match_parent"
@@ -19,7 +50,7 @@
                 android:id="@+id/tab_item_periode1"
                 style="@style/TabViewStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Année en cours" />
 
             <com.google.android.material.tabs.TabItem
@@ -30,10 +61,12 @@
 
         </com.google.android.material.tabs.TabLayout>
 
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/id_tablayout_type_score"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tab_item_score_eco_conduite"
